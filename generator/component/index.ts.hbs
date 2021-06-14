@@ -1,0 +1,27 @@
+import React from 'react';
+
+// utils
+import mergeClasses from "../../utils/mergeClasses";
+
+
+// styles
+import defaultClasses from './{{lowerCase name}}.module.css';
+
+interface Props {
+classes?:object
+}
+
+const {{ properCase name }} = ({classes: propsClasses}: Props) => {
+
+const classes = mergeClasses(defaultClasses, propsClasses);
+
+return (
+<div>
+    {{#if wantMessages}}
+    <FormattedMessage {...messages.header} />
+    {{/if}}
+</div>
+);
+}
+
+export default {{ properCase name }};

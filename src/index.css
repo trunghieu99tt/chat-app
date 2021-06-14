@@ -1,13 +1,39 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.social-icons {
+    @apply m-2 cursor-pointer transition-all duration-300;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dropdownItem {
+    @apply flex gap-3 items-center p-3 cursor-pointer rounded-lg text-xs;
+}
+
+.dropdownItem:hover {
+    @apply bg-mGray3;
+}
+
+.dropdownItem:last-of-type {
+    @apply border-t-2 rounded-none text-red-700 font-bold gap-3;
+}
+
+.overviewMyAccount-listItem {
+    @apply border-t-1 border-mGray4 px-12 py-7 grid grid-cols-2-4-6 items-center;
+}
+
+.overviewMyAccount-listItem__name {
+    @apply text-mGray1 text-sm uppercase font-medium;
+}
+
+.overviewMyAccount-listItem p:nth-of-type(2) {
+    @apply text-lg font-medium;
+}
+
+.editMyAccount__inputGroup {
+    @apply w-1/2 mb-6;
+}
+
+.editMyAccount__inputLabel {
+    @apply text-xss font-medium pb-1 block;
 }

@@ -1,0 +1,36 @@
+.root {
+    border: none;
+    background: #fff;
+    padding: 13px;
+    border: var(--border);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wrapper svg {
+    width: 20px;
+    height: 16px;
+}
+
+.input {
+    border: none;
+    background: transparent;
+    flex: 1;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.error {
+    font-size: 13px;
+    color: red;
+    margin-top: 5px;
+    font-weight: bold;
+}
