@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 
 type Props = {
-    isRegister: boolean
+    isRegister?: boolean
 }
 
 
@@ -22,7 +22,7 @@ type Props = {
  * handleSubmit: func,
  * }}
  */
-const useAuth = ({ isRegister }: Props) => {
+const useAuth = ({ isRegister = false }: Props) => {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
     const setUser = useSetRecoilState(userState);
@@ -55,6 +55,15 @@ const useAuth = ({ isRegister }: Props) => {
         }
     }
 
+    const handleLogout = async () => {
+        const response = await client.post('/auth/logout');
+        const message = response?.data?.message;
+        localStorage.setItem("accessToken", "");
+        setUser(null);
+        history.push("/login");
+        toast.info(message);
+    }
+
     const handleRegister = async (formData: any) => {
         try {
             const response = await client.post("/auth/signup", formData);
@@ -72,6 +81,7 @@ const useAuth = ({ isRegister }: Props) => {
 
     return {
         register,
+        handleLogout,
         handleSubmit: handleSubmit(onSubmit)
     }
 }

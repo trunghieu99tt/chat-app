@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useHistory } from "react-router";
+import { useRecoilValue } from "recoil";
 
 // icons
 import { BsFillCaretDownFill } from "react-icons/bs";
@@ -9,21 +8,17 @@ import { MdSupervisorAccount } from "react-icons/md";
 
 // states
 import { fullNameSelector, userState } from "../../states/user.state";
+import { useAuth } from "../../talons/Auth/useAuth";
 
 const MyAccountController = () => {
     const [visibleDropdown, setVisibleDropdown] = useState<boolean>(false);
 
-    const [user, setUser] = useRecoilState(userState);
+    const user = useRecoilValue(userState);
     const fullName = useRecoilValue(fullNameSelector);
-    const history = useHistory();
+
+    const { handleLogout } = useAuth({});
 
     const toggleDropdown = () => setVisibleDropdown((isVisible) => !isVisible);
-
-    const onLogout = () => {
-        localStorage.setItem("accessToken", "");
-        setUser(null);
-        history.push("/login");
-    };
 
     return (
         <div className="relative">
@@ -51,7 +46,7 @@ const MyAccountController = () => {
                             <MdSupervisorAccount></MdSupervisorAccount>
                             <p>Group Chat</p>
                         </li>
-                        <li className="dropdownItem" onClick={onLogout}>
+                        <li className="dropdownItem" onClick={handleLogout}>
                             <RiLogoutBoxRLine></RiLogoutBoxRLine>
                             <p>Logout</p>
                         </li>

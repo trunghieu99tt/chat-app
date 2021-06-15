@@ -18,7 +18,9 @@ const OverviewMyAccount = () => {
     useEffect(() => {
         if (user?.isThirdParty === true) {
             toast.info(
-                "You're logging with google account. Set up username/password to login with username/password! Go to Edit!"
+                `You're logging with social account. 
+                Set up username/password to login with username/password! 
+                Go to Edit!`
             );
         }
     }, []);

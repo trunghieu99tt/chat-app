@@ -2,9 +2,16 @@ import React from "react";
 import client from "../../api/client";
 import GoogleLogin from "react-google-login";
 import { useSocialLogin } from "./useSocialLogin";
+import Loading from "../Loading";
 
 const SocialLoginIcons = () => {
-    const { responseGoogle, showAlert } = useSocialLogin();
+    const { responseGoogle, showAlert, loading } = useSocialLogin();
+
+    const githubClientID = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const githubRedirectUrl = process.env.REACT_APP_GITHUB_REDIRECT_URL;
+    const githubUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${githubClientID}&redirect_uri=${githubRedirectUrl}`;
+
+    if (loading) return <Loading />;
 
     return (
         <div className="flex justify-center mt-4">
@@ -105,7 +112,7 @@ const SocialLoginIcons = () => {
                     </defs>
                 </svg>
             </div>
-            <div className="social-icons" onClick={showAlert}>
+            <a className="social-icons" href={githubUrl}>
                 <svg
                     width="43"
                     height="43"
@@ -136,7 +143,7 @@ const SocialLoginIcons = () => {
                         </clipPath>
                     </defs>
                 </svg>
-            </div>
+            </a>
         </div>
     );
 };

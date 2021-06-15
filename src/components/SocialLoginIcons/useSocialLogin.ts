@@ -3,6 +3,7 @@ import { useSetRecoilState } from "recoil";
 import client from "../../api/client";
 import { userState } from "../../states/user.state";
 import { toast } from 'react-toastify';
+import { useEffect, useState } from "react";
 
 
 /**
@@ -19,6 +20,17 @@ import { toast } from 'react-toastify';
 const useSocialLogin = () => {
     const setUser = useSetRecoilState(userState);
     const history = useHistory();
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        const url = window.location.href;
+        const hasCode = url.includes("?code=");
+        if (hasCode) {
+            const newUrl = url.split("?code=");
+            const code = newUrl[1];
+            responseGithub(code);
+        }
+    }, []);
 
     const showAlert = () => {
         alert(
@@ -27,9 +39,24 @@ const useSocialLogin = () => {
     };
 
     const responseGoogle = async (data: any) => {
+        setLoading(true);
         const response = await client.post("/auth/google", {
             tokenId: data.tokenId,
         });
+        setLoading(false);
+        handleAuth(response);
+    };
+
+    const responseGithub = async (code: string) => {
+        setLoading(true);
+        const response = await client.post("/auth/github", {
+            code
+        });
+        setLoading(false);
+        handleAuth(response);
+    }
+
+    const handleAuth = (response: any) => {
         const accessToken = response?.data?.accessToken;
         const user = response?.data?.data;
         if (user && accessToken) {
@@ -38,9 +65,10 @@ const useSocialLogin = () => {
             history.push('/');
             toast.success("Login Success");
         }
-    };
+    }
 
     return {
+        loading,
         showAlert,
         responseGoogle
     }

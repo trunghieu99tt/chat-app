@@ -65,13 +65,17 @@ const useEditMyAccount = () => {
         Object.entries(data).forEach(([key, value]) => {
             formData.append(key, value as any);
         })
-        const response = await client.patch('/user/update', formData);
-        if (response?.data?.status === 200) {
-            setUser(response.data.data);
-            history.push('/my-profile');
-            toast.success("Update profile successfully");
-        } else {
-            toast.error("Something went wrong. Please try again later")
+        try {
+            const response = await client.patch('/user/update', formData);
+            if (response?.data?.status === 200) {
+                setUser(response.data.data);
+                history.push('/my-profile');
+                toast.success("Update profile successfully");
+            } else {
+                toast.error("Something went wrong. Please try again later")
+            }
+        } catch (error) {
+            toast.error(error.response.data.message);
         }
     }
 

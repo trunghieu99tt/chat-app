@@ -11,6 +11,7 @@ import client from "./api/client";
 // pages
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Auth/Login.page";
+import SignUpPage from "./pages/Auth/SignUp.page";
 
 // components
 import Loading from "./components/Loading";
@@ -19,7 +20,6 @@ import PrivateRouteController from "./routes/PrivateRouteController";
 
 // states
 import { userState } from "./states/user.state";
-import SignUpPage from "./pages/Auth/SignUp.page";
 
 // styles
 import "./App.css";
@@ -40,7 +40,9 @@ const App = () => {
             history.push("/my-profile");
         } else {
             setLoading(false);
-            history.push("/login");
+            if (!window.location.href.includes("login")) {
+                history.push("/login");
+            }
         }
     }, []);
 
@@ -48,10 +50,12 @@ const App = () => {
         if (!user) {
             try {
                 const response = await client.get("/user/me");
-                setUser(response.data.data);
+                setUser(response?.data?.data);
             } catch (error) {
-                toast.error(error.response.data.message);
-                history.push("/login");
+                toast.error(error?.response?.data?.message);
+                if (!window.location.href.includes("login")) {
+                    history.push("/login");
+                }
             }
         }
         setLoading(false);
