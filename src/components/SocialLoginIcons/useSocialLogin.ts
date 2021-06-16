@@ -46,6 +46,7 @@ const useSocialLogin = () => {
             });
             handleAuth(response);
         } catch (error) {
+            console.log(`error`, error);
         }
         setLoading(false);
     };
