@@ -5,7 +5,8 @@ import { useSocialLogin } from "./useSocialLogin";
 import Loading from "../Loading";
 
 const SocialLoginIcons = () => {
-    const { responseGoogle, showAlert, loading } = useSocialLogin();
+    const { responseGoogle, showAlert, loading, responseGoogleFail } =
+        useSocialLogin();
 
     const githubClientID = process.env.REACT_APP_GITHUB_CLIENT_ID;
     const githubRedirectUrl = process.env.REACT_APP_GITHUB_REDIRECT_URL;
@@ -45,7 +46,7 @@ const SocialLoginIcons = () => {
                 )}
                 buttonText="Login"
                 onSuccess={responseGoogle}
-                onFailure={responseGoogle}
+                onFailure={responseGoogleFail}
                 cookiePolicy={"single_host_origin"}
             />
             <div className="social-icons" onClick={showAlert}>

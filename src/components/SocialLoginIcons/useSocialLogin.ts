@@ -50,6 +50,10 @@ const useSocialLogin = () => {
         setLoading(false);
     };
 
+    const responseGoogleFail = () => {
+        toast.error("Something went wrong");
+    }
+
     const responseGithub = async (code: string) => {
         setLoading(true);
         const response = await client.post("/auth/github", {
@@ -73,7 +77,8 @@ const useSocialLogin = () => {
     return {
         loading,
         showAlert,
-        responseGoogle
+        responseGoogle,
+        responseGoogleFail
     }
 
 }
