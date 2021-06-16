@@ -40,11 +40,14 @@ const useSocialLogin = () => {
 
     const responseGoogle = async (data: any) => {
         setLoading(true);
-        const response = await client.post("/auth/google", {
-            tokenId: data.tokenId,
-        });
+        try {
+            const response = await client.post("/auth/google", {
+                tokenId: data.tokenId,
+            });
+            handleAuth(response);
+        } catch (error) {
+        }
         setLoading(false);
-        handleAuth(response);
     };
 
     const responseGithub = async (code: string) => {
