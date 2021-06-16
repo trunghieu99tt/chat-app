@@ -43,7 +43,7 @@ const SocialLoginIcons = () => {
                     </button>
                 )}
                 buttonText="Login"
-                onSuccess={(data: any) => responseGoogle(data)}
+                onSuccess={responseGoogle}
                 onFailure={responseGoogleFail}
                 cookiePolicy={"single_host_origin"}
             />
