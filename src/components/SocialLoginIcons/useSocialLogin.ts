@@ -39,6 +39,7 @@ const useSocialLogin = () => {
     };
 
     const responseGoogle = async (data: any) => {
+        console.log('Go here');
         setLoading(true);
         try {
             const response = await client.post("/auth/google", {
