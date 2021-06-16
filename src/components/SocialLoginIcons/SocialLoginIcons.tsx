@@ -1,5 +1,4 @@
 import React from "react";
-import client from "../../api/client";
 import GoogleLogin from "react-google-login";
 import { useSocialLogin } from "./useSocialLogin";
 import Loading from "../Loading";
@@ -19,10 +18,10 @@ const SocialLoginIcons = () => {
             <GoogleLogin
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
                 render={(renderProps) => (
-                    <div
+                    <button
                         className="social-icons"
                         onClick={renderProps.onClick}
-                        // disabled={renderProps.disabled}
+                        disabled={renderProps.disabled}
                     >
                         <svg
                             width="43"
@@ -42,7 +41,7 @@ const SocialLoginIcons = () => {
                                 fill="#828282"
                             />
                         </svg>
-                    </div>
+                    </button>
                 )}
                 buttonText="Login"
                 onSuccess={responseGoogle}
