@@ -43,8 +43,8 @@ const SocialLoginIcons = () => {
                     </button>
                 )}
                 buttonText="Login"
-                onSuccess={(data) => responseGoogle(data)}
-                onFailure={() => responseGoogleFail()}
+                onSuccess={(data: any) => responseGoogle(data)}
+                onFailure={responseGoogleFail}
                 cookiePolicy={"single_host_origin"}
             />
             <div className="social-icons" onClick={showAlert}>
