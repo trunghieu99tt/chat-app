@@ -1,0 +1,45 @@
+.root {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 15px;
+    background: var(--mGray6);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    right: 1rem;
+}
+
+.fileInputLabel {
+    --labelSize: 1.5rem;
+    width: var(--labelSize);
+    height: var(--labelSize);
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.textInput {
+    width: 100%;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.submitBtn {
+    --size: 35px;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--mBlue1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}

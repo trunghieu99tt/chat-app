@@ -45,7 +45,7 @@ const useAuth = ({ isRegister = false }: Props) => {
                 if (response?.status === 200) {
                     setUser(response?.data?.data);
                     toast.success("Login successful");
-                    history.push('/my-profile')
+                    history.push('/')
                 }
             } else {
                 toast.error("Login Failed");
@@ -72,7 +72,7 @@ const useAuth = ({ isRegister = false }: Props) => {
             if (accessToken) {
                 localStorage.setItem("accessToken", `"${accessToken}"`);
                 setUser(user);
-                history.push('/my-profile')
+                history.push('/')
             }
         } catch (error) {
             toast.error(error.response.data.message);

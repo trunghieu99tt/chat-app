@@ -1,0 +1,11 @@
+.root {
+    background: var(--mGray5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    color: #fff;
+    font-size: 1.5rem;
+}

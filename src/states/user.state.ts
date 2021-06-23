@@ -14,3 +14,8 @@ export const fullNameSelector = selector({
         return fullName;
     },
 })
+
+export const connectedUsersState = atom<iUser[] | null>({
+    key: "connectedUsers",
+    default: null
+})

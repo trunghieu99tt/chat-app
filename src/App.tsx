@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Switch, useHistory } from "react-router";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+
+// talons
+import { useSocket } from "./talons/Socket/useSocket";
 
 // libs
 import { toast } from "react-toastify";
@@ -27,6 +30,7 @@ import "./App.css";
 const App = () => {
     const [user, setUser] = useRecoilState(userState);
     const [loading, setLoading] = useState<boolean>(true);
+    const socketTalons = useSocket();
 
     // router
     const history = useHistory();
@@ -37,7 +41,7 @@ const App = () => {
             JSON.parse(localStorage.getItem("accessToken") || "");
         if (token !== null && token.length > 3) {
             getUser();
-            history.push("/my-profile");
+            // history.push("/");
         } else {
             setLoading(false);
             if (!window.location.href.includes("login")) {

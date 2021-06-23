@@ -7,12 +7,15 @@ import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
+import SimpleReactLightbox from "simple-react-lightbox";
 
 ReactDOM.render(
     <React.StrictMode>
         <RecoilRoot>
             <BrowserRouter>
-                <App />
+                <SimpleReactLightbox>
+                    <App />
+                </SimpleReactLightbox>
                 <ToastContainer
                     position="top-center"
                     autoClose={5000}

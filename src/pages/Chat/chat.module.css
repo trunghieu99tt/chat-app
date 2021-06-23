@@ -1,0 +1,94 @@
+.root {
+    background: var(--mGray5);
+}
+
+.header {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 3.75rem;
+}
+
+.headerInner {
+    padding: 1rem 0;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.roomImage {
+    --size: 30px;
+    width: var(--size);
+    height: var(--size);
+}
+
+.roomImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.roomName {
+    font-weight: 500;
+    color: #fff;
+}
+
+.main {
+    padding-bottom: 2.5rem;
+    width: 90%;
+    margin: 0 auto;
+    height: calc(100vh - 3.75rem);
+}
+
+.content {
+    position: relative;
+    height: 100%;
+}
+
+.messageContainer {
+    height: 90%;
+    overflow: auto;
+    padding-right: 0.75rem;
+}
+
+.messageContainer::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.messageContainer::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.messageContainer::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+.messageGroupHeading {
+    text-align: center;
+    color: #fff;
+    position: relative;
+    display: block;
+}
+
+.messageGroupHeading p {
+    background: #252329;
+    z-index: 1;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%);
+    padding: 0 2rem;
+}
+
+.messageGroupHeading::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    background: #fff;
+}
