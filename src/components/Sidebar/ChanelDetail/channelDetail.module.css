@@ -1,0 +1,17 @@
+.member figure {
+    display: flex;
+    gap: 15px;
+}
+
+.memberImage {
+    --size: 30px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+}
+
+.memberName {
+    font-weight: 600;
+    color: var(--mGray1);
+    font-size: 14px;
+}

@@ -9,4 +9,10 @@ const randomDate = (start: any, end: any, startHour: any, endHour: any) => {
     return date;
 };
 
-export { formatNumber, randomDate };
+const getDaysDiffBetweenDates = (date1: Date, date2: Date) => {
+    const diff = Math.abs(date1.getTime() - date2.getTime());
+    return Math.ceil(diff / (1000 * 3600 * 24));
+}
+
+
+export { formatNumber, randomDate, getDaysDiffBetweenDates };

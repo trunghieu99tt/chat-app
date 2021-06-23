@@ -7,6 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import NotFound from "../pages/NotFound";
 import EditMyAccount from "../pages/MyAccount/Edit";
 import OverviewMyAccount from "../pages/MyAccount/Overview";
+import Chat from "../pages/Chat";
+import Welcome from "../pages/Welcome";
 
 // components
 import PrivateRoute from "../components/route/PrivateRoute";
@@ -14,7 +16,8 @@ import PrivateRoute from "../components/route/PrivateRoute";
 const PrivateRoutesController = () => {
     return (
         <Switch>
-            <PrivateRoute exact path="/" component={OverviewMyAccount} />
+            <PrivateRoute exact path="/" component={Welcome} />
+            <PrivateRoute exact path="/room/:id" component={Chat} />
             <PrivateRoute
                 exact
                 path="/my-profile"
@@ -25,6 +28,7 @@ const PrivateRoutesController = () => {
                 path="/my-profile/edit"
                 component={EditMyAccount}
             />
+
             <Route component={NotFound} />
         </Switch>
     );

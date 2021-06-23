@@ -1,0 +1,22 @@
+.root {
+    background: #181818;
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #777;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer svg {
+    width: 20px;
+    height: 20px;
+    color: var(--mGray1);
+}

@@ -9,9 +9,11 @@ module.exports = {
                 mGray2: "#333333",
                 mGray3: "#F2F2F2",
                 mGray4: "#D3D3D3",
+                mGray5: "#252329",
+                mGray6: "#3C393F",
+                mBlack1: "#120F13",
             },
             borderRadius: {
-                mSm: "8px",
                 mL: "12px",
                 mXl: "24px",
             },
@@ -20,6 +22,7 @@ module.exports = {
             },
             gridTemplateColumns: {
                 "2-4-6": "40% 60%",
+                "2-2-8": "20% 80%",
             },
             fontSize: {
                 xss: "13px",
@@ -29,6 +32,15 @@ module.exports = {
             },
             height: {
                 17: "4.5rem",
+            },
+            minWidth: {
+                5: "40rem",
+            },
+            boxShadow: {
+                box1: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            },
+            maxHeight: {
+                "55p": "55%",
             },
         },
     },

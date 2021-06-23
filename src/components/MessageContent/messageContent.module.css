@@ -1,0 +1,32 @@
+.root {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+}
+
+.image {
+    --size: 42px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 14px;
+    color: #fff;
+}
+
+.time {
+    font-size: 13px;
+    margin-left: 1rem;
+    display: inline-block;
+    color: var(--mGray1);
+}
+
+.content {
+    color: #fff;
+    margin-top: 2px;
+    font-size: 15px;
+    margin-bottom: 2px;
+}

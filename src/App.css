@@ -14,6 +14,14 @@ li {
 }
 
 :root {
-    --blue-1: #2f80ed;
+    --mBlue1: #2f80ed;
     --border: 1px solid #bdbdbd;
+    --rounded-lg: 8px;
+    --mGray1: #828282;
+    --mGray2: #333333;
+    --mGray3: #f2f2f2;
+    --mGray4: #d3d3d3;
+    --mGray5: #252329;
+    --mGray6: #3c393f;
+    --mBlack1: #120f13;
 }

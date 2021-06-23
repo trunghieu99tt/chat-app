@@ -37,3 +37,7 @@
 .editMyAccount__inputLabel {
     @apply text-xss font-medium pb-1 block;
 }
+
+.input {
+    @apply bg-transparent text-sm text-mGray1 ml-4  outline-none;
+}
