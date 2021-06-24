@@ -26,9 +26,8 @@ const useSocket = () => {
             setConnectedUsers(res);
         });
         socket.on('rooms', (res: any) => {
+            console.log(`res`, res)
             setChannels(res);
-        })
-        socket.on('createRoom', (res: any) => {
         })
     }
 
@@ -48,12 +47,20 @@ const useSocket = () => {
                 roomID,
                 file
             });
-        } else {
-
         }
-
-
     }
+
+    const joinRoom = (roomID: string) => {
+        const username = user?.username;
+        if (username) {
+            (socketInstance.current as any).emit("joinRoom", {
+                username,
+                roomID,
+            });
+        }
+    }
+
+
 
     // const getConnectedUsers = () => {
     //     try {
@@ -66,7 +73,7 @@ const useSocket = () => {
     // }
 
     // const getChannels = () => {
-    //     console.log(`socketInstance.current`, socketInstance.current);
+    //     console.log(`socketInstance.current`, socketInstance.current);df
     //     try {
     //         (socketInstance.current! as any).on('rooms', (res: any) => {
     //             console.log(`res`, res)
@@ -79,6 +86,7 @@ const useSocket = () => {
 
     return {
         addMessage,
+        joinRoom,
         createChannel
     }
 

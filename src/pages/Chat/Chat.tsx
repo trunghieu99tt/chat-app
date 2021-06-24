@@ -11,6 +11,9 @@ import MessageGroup from "../../components/MessageGroup";
 import TextMessageForm from "../../components/TextMessageForm";
 import ImageMessageForm from "../../components/ImageMessageForm";
 
+// images
+import defaultRoomImage from "../../static/images/default_room.png";
+
 // classes
 import classes from "./chat.module.css";
 
@@ -39,7 +42,7 @@ const Chat = () => {
                 <div className={classes.headerInner}>
                     <figure className={classes.roomImage}>
                         <img
-                            src={currentChannel?.image}
+                            src={currentChannel?.image || defaultRoomImage}
                             alt={`${currentChannel?.name}-wallpaper`}
                         />
                     </figure>

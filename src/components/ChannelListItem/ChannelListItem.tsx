@@ -7,6 +7,9 @@ import mergeClasses from "../../utils/mergeClasses";
 // styles
 import defaultClasses from "./channellistitem.module.css";
 
+// images
+import defaultRoomImage from "../../static/images/default_room.png";
+
 // types
 import { iChannel } from "../../types/channel.types";
 
@@ -21,23 +24,16 @@ const ChannelListItem = ({ classes: propsClasses, data }: Props) => {
     return (
         <article className={classes.root}>
             <Link to={`/room/${data._id}`}>
-                {data.image ? (
-                    <figure className={classes.content}>
-                        <img
-                            src={data.image}
-                            alt={`${data.name}-${data._id}`}
-                            className={classes.image}
-                        />
-                        <figcaption className={classes.name}>
-                            {data.name}
-                        </figcaption>
-                    </figure>
-                ) : (
-                    <div className={classes.content}>
-                        <div className={classes.imageText}>{data.name[0]}</div>
-                        <p className={classes.name}>{data.name}</p>
-                    </div>
-                )}
+                <figure className={classes.content}>
+                    <img
+                        src={data?.image || defaultRoomImage}
+                        alt={`${data.name}-${data._id}`}
+                        className={classes.image}
+                    />
+                    <figcaption className={classes.name}>
+                        {data.name}
+                    </figcaption>
+                </figure>
             </Link>
         </article>
     );

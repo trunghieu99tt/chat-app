@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 // layout
 import MyAccountLayout from "../../../layout/MyAccount/MyAccount.layout";
 
+// images
+import DefaultAvatar from "../../../static/images/default.png";
+
 // states
 import { fullNameSelector, userState } from "../../../states/user.state";
 
@@ -53,7 +56,7 @@ const OverviewMyAccount = () => {
                         </p>
                         <figure>
                             <img
-                                src={user?.photo}
+                                src={user?.photo || DefaultAvatar}
                                 alt={fullName}
                                 className="w-17 h-17 object-cover rounded-lg"
                             />

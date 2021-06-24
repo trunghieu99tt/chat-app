@@ -1,17 +1,26 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useRecoilState, useRecoilValue } from "recoil";
-import ChannelDetail from "../../../components/Sidebar/ChanelDetail";
-import ChannelList from "../../../components/Sidebar/ChannelList";
-import { fullNameSelector, userState } from "../../../states/user.state";
-import { TSidebar } from "../../../types/app.types";
 import cn from "classnames";
-
-import { BiLinkExternal } from "react-icons/bi";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 
+// components
+import ChannelDetail from "../../../components/Sidebar/ChanelDetail";
+import ChannelList from "../../../components/Sidebar/ChannelList";
+
+// states
+import { fullNameSelector, userState } from "../../../states/user.state";
+
+// types
+import { TSidebar } from "../../../types/app.types";
+
+// icons
+import { BiLinkExternal } from "react-icons/bi";
+
+// images
+import DefaultAvatar from "../../../static/images/default.png";
+
+// styles
 import classes from "./sidebar.module.css";
 
 const Sidebar = () => {
@@ -37,13 +46,11 @@ const Sidebar = () => {
             <div className={classes.footer}>
                 <figure className="flex gap-4 items-center">
                     <img
-                        className="w-10 h-10 object-cover rounded-md"
-                        src={user?.photo}
+                        className="w-10 h-10 object-cover rounded-full"
+                        src={user?.photo || DefaultAvatar}
                         alt={`${fullName}-avatar`}
                     />
-                    <figcaption className="font-semibold text-mGray1">
-                        {fullName}
-                    </figcaption>
+                    <figcaption className="text-white">{fullName}</figcaption>
                 </figure>
                 <Link to="/my-profile">
                     <BiLinkExternal />

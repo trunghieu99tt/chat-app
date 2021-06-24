@@ -6,6 +6,9 @@ import { getDaysDiffBetweenDates } from "../../utils/helper";
 // types
 import { iMessage } from "../../types/message.types";
 
+// images
+import defaultAvatar from "../../static/images/default.png";
+
 // styles
 import classes from "./messageContent.module.css";
 
@@ -38,7 +41,7 @@ const MessageContent = ({ data }: Props) => {
             <figure>
                 <img
                     className={classes.image}
-                    src={data?.author?.photo || ""}
+                    src={data?.author?.photo || defaultAvatar}
                     alt={`${fullName}-avatar`}
                 />
             </figure>

@@ -7,12 +7,14 @@ import { iChannel } from "../../types/channel.types";
 import { iMessage } from "../../types/message.types";
 import client from "../../api/client";
 import { userState } from "../../states/user.state";
+import { iUser } from "../../types/user.types";
 
 const useChat = () => {
 
     const channels = useRecoilValue(channelState);
+    const currentUser = useRecoilValue(userState);
     const params: any = useParams();
-    const { addMessage } = useSocket();
+    const { addMessage, joinRoom } = useSocket();
     const { id } = params;
 
     const [messages, setMessages] = useState<{ [key: string]: iMessage[] } | null>(null);
@@ -30,8 +32,11 @@ const useChat = () => {
     useEffect(() => {
         if (currentChannel) {
             getMessages();
+            joinChannel();
         }
     }, [currentChannel]);
+
+
 
     const onSubmit = async (event: any) => {
         event.preventDefault();
@@ -80,6 +85,13 @@ const useChat = () => {
         })
 
         setMessages(orderedByDate);
+    }
+
+    const joinChannel = () => {
+        const isUserRoomMember = currentChannel?.members.find((member: iUser) => member.username === currentUser?.username);
+        if (!isUserRoomMember) {
+            joinRoom(id);
+        }
     }
 
     const onCloseImageMessageForm = () => {

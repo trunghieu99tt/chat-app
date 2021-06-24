@@ -19,7 +19,14 @@ import classes from "./channelList.module.css";
 interface Props {}
 
 const ChannelList = (props: Props) => {
-    const { channelList, openForm, closeForm, visibleForm } = useChannelList();
+    const {
+        query,
+        visibleForm,
+        channelList,
+        openForm,
+        closeForm,
+        onChangeSearchInput,
+    } = useChannelList();
 
     return (
         <section>
@@ -39,6 +46,8 @@ const ChannelList = (props: Props) => {
                     type="text"
                     placeholder="Search"
                     className="input flex-1"
+                    value={query}
+                    onChange={onChangeSearchInput}
                 />
             </div>
             <div className={classes.channelList}>

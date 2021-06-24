@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 
+// talons
+import { useAuth } from "../../talons/Auth/useAuth";
+
 // icons
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { RiLogoutBoxRLine, RiAccountCircleFill } from "react-icons/ri";
 import { MdSupervisorAccount } from "react-icons/md";
 
+// images
+import DefaultAvatar from "../../static/images/default.png";
+
 // states
 import { fullNameSelector, userState } from "../../states/user.state";
-import { useAuth } from "../../talons/Auth/useAuth";
 
 const MyAccountController = () => {
     const [visibleDropdown, setVisibleDropdown] = useState<boolean>(false);
@@ -23,7 +28,11 @@ const MyAccountController = () => {
     return (
         <div className="relative">
             <figure className="flex items-center gap-2">
-                <img src={user?.photo} alt={fullName} className="w-8 h-8" />
+                <img
+                    src={user?.photo || DefaultAvatar}
+                    alt={fullName}
+                    className="w-8 h-8"
+                />
                 <figcaption className="text-xs font-bold">
                     {fullName}
                 </figcaption>

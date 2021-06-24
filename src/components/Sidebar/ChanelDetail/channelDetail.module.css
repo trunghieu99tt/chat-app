@@ -1,6 +1,49 @@
+.channelImage {
+    --size: 10rem;
+    width: 100%;
+    height: var(--size);
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgb(255 255 255 / 30%);
+}
+
+.channelImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.channelName {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.channelDescription {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.memberHeading {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.member {
+    margin-bottom: 10px;
+}
+
 .member figure {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 .memberImage {
@@ -8,10 +51,26 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.dot {
+    --dot-size: 10px;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+}
+
+.dot.online {
+    background: green;
+}
+
+.dot.offline {
+    background-color: var(--mGray1);
 }
 
 .memberName {
-    font-weight: 600;
-    color: var(--mGray1);
+    font-weight: 500;
+    color: #fff;
     font-size: 14px;
 }
