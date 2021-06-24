@@ -12,12 +12,15 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-mic": "^12.4.2",
     "@types/react-router": "^5.1.15",
     "@types/react-router-dom": "^5.1.7",
     "@types/socket.io-client": "^3.0.0",
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
+    "emoji-picker-react": "^3.4.8",
+    "firebase": "^8.6.8",
     "framer-motion": "^4.1.17",
     "plop": "^2.7.4",
     "postcss": "^7",
@@ -26,6 +29,8 @@
     "react-google-login": "^5.2.2",
     "react-hook-form": "^6.15.1",
     "react-icons": "^4.2.0",
+    "react-mic": "^12.4.6",
+    "react-player": "^2.9.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -61,5 +66,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.0"
   }
 }

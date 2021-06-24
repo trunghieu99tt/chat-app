@@ -19,6 +19,7 @@ const useChat = () => {
 
     const [messages, setMessages] = useState<{ [key: string]: iMessage[] } | null>(null);
     const [message, setMessage] = useState<string>('');
+    const [chosenEmoji, setChosenEmoji] = useState<any>(null);
     const [messageImage, setMessageImage] = useState<{
         file: File | null,
         url: string,
@@ -35,6 +36,14 @@ const useChat = () => {
             joinChannel();
         }
     }, [currentChannel]);
+
+    useEffect(() => {
+        if (chosenEmoji) {
+            const newMessage = `${message} ${chosenEmoji!.emoji}`;
+            setMessage(newMessage);
+            setChosenEmoji(null);
+        }
+    }, [chosenEmoji]);
 
 
 
@@ -101,14 +110,18 @@ const useChat = () => {
         })
     }
 
+    console.log(`chosenEmoji`, chosenEmoji);
+
     return {
         message,
         messages,
+        chosenEmoji,
         messageImage,
         currentChannel,
 
         onSubmit,
         onChange,
+        setChosenEmoji,
         onCloseImageMessageForm,
     }
 }

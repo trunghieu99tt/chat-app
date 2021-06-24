@@ -40,7 +40,7 @@ const useSocket = () => {
         }
     }
 
-    const addMessage = (message: any, roomID: string, file: string | null = null) => {
+    const addMessage = (message: string, roomID: string, file: string | null = null) => {
         const username = user?.username;
         if (username) {
             (socketInstance.current as any).emit("addMessage", {

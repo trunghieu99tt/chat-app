@@ -13,6 +13,14 @@ li {
     list-style: none;
 }
 
+button {
+    outline: none;
+}
+
+.button:focus {
+    outline: none !important;
+}
+
 :root {
     --mBlue1: #2f80ed;
     --border: 1px solid #bdbdbd;
@@ -24,4 +32,12 @@ li {
     --mGray5: #252329;
     --mGray6: #3c393f;
     --mBlack1: #120f13;
+}
+
+.emoji-search {
+    color: #000 !important;
+}
+
+.sound-wave {
+    height: 2rem;
 }

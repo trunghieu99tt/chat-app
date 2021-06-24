@@ -44,8 +44,17 @@
 
 .memberContainer {
     margin-bottom: 1rem;
+    margin-top: 3rem;
     max-height: 20rem;
     overflow: auto;
+}
+
+.memberContainer::-webkit-scrollbar {
+    width: 5px;
+}
+
+.memberContainer::-webkit-scrollbar-thumb {
+    background: #fff;
 }
 
 .memberHeading {

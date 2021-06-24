@@ -67,7 +67,7 @@ const useEditMyAccount = () => {
         })
         try {
             const response = await client.patch('/user/update', formData);
-            if (response?.data?.status === 200) {
+            if (response?.data?.statusCode === 200) {
                 setUser(response.data.data);
                 history.push('/my-profile');
                 toast.success("Update profile successfully");

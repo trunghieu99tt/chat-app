@@ -20,10 +20,12 @@ const Chat = () => {
     const {
         message,
         messages,
-        currentChannel,
+        chosenEmoji,
         messageImage,
+        currentChannel,
         onSubmit,
         onChange,
+        setChosenEmoji,
         onCloseImageMessageForm,
     } = useChat();
 
@@ -78,6 +80,8 @@ const Chat = () => {
                     <TextMessageForm
                         onChange={onChange}
                         onSubmit={onSubmit}
+                        chosenEmoji={chosenEmoji}
+                        setChosenEmoji={setChosenEmoji}
                         value={message}
                     />
                 </div>

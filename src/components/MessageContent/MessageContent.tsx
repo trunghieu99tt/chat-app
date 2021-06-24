@@ -1,4 +1,5 @@
 import React from "react";
+import ReactPlayer from "react-player";
 
 // utils
 import { getDaysDiffBetweenDates } from "../../utils/helper";
@@ -37,6 +38,34 @@ const MessageContent = ({ data }: Props) => {
 
     const fullName = `${data?.author?.firstName} ${data?.author?.lastName}`;
 
+    let fileContent = null;
+
+    if (data.file) {
+        if (
+            process.env.REACT_APP_FIREBASE_PROJECTID &&
+            data.file.includes(process.env.REACT_APP_FIREBASE_PROJECTID)
+        ) {
+            fileContent = (
+                <video controls>
+                    <source src={data.file} type="audio/webm" />
+                </video>
+            );
+        } else {
+            fileContent = (
+                <figure>
+                    <img
+                        className="w-60 h-60 object-cover"
+                        src={data?.file || ""}
+                        alt={`${fullName}-message`}
+                        onLoad={() => {
+                            console.log("Loaded");
+                        }}
+                    />
+                </figure>
+            );
+        }
+    }
+
     return (
         <article className={classes.root}>
             <figure>
@@ -54,20 +83,7 @@ const MessageContent = ({ data }: Props) => {
                     </span>
                 </div>
                 <p className={classes.content}>{data.content}</p>
-                {data?.file && (
-                    <SRLWrapper>
-                        <figure>
-                            <img
-                                className="w-20 h-20"
-                                src={data?.file || ""}
-                                alt={`${fullName}-message`}
-                                onLoad={() => {
-                                    console.log("Loaded");
-                                }}
-                            />
-                        </figure>
-                    </SRLWrapper>
-                )}
+                {data?.file && <SRLWrapper>{fileContent}</SRLWrapper>}
             </div>
         </article>
     );
