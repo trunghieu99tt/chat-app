@@ -9,6 +9,7 @@ const useChannelList = () => {
     const [visibleForm, setVisibleForm] = useState<boolean>(false);
     const [query, setQuery] = useState<string>("");
     const [channelList, setChannelList] = useState<iChannel[]>(channels || []);
+    const [selected, setSelected] = useState<number>(0);
 
     useEffect(() => {
         console.log(`channels`, channels);
@@ -34,10 +35,12 @@ const useChannelList = () => {
 
     return {
         query,
+        selected,
         channelList,
         visibleForm,
         openForm,
         closeForm,
+        setSelected,
         onChangeSearchInput
     }
 

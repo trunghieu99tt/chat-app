@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimateSharedLayout } from "framer-motion";
 
 // talons
 import { useChannelList } from "./useChannelList";
@@ -21,10 +22,12 @@ interface Props {}
 const ChannelList = (props: Props) => {
     const {
         query,
+        selected,
         visibleForm,
         channelList,
         openForm,
         closeForm,
+        setSelected,
         onChangeSearchInput,
     } = useChannelList();
 
@@ -50,11 +53,21 @@ const ChannelList = (props: Props) => {
                     onChange={onChangeSearchInput}
                 />
             </div>
-            <div className={classes.channelList}>
-                {channelList?.map((channel: iChannel) => {
-                    return <ChannelListItem data={channel} />;
-                })}
-            </div>
+            <AnimateSharedLayout>
+                <div className={classes.channelList}>
+                    {channelList?.map((channel: iChannel, idx: number) => {
+                        return (
+                            <ChannelListItem
+                                data={channel}
+                                isSelected={selected === idx}
+                                onHover={() => setSelected(idx)}
+                                onLeave={() => setSelected(-1)}
+                                key={`channelListItem-${channel._id}`}
+                            />
+                        );
+                    })}
+                </div>
+            </AnimateSharedLayout>
         </section>
     );
 };

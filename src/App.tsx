@@ -30,6 +30,8 @@ import "./App.css";
 const App = () => {
     const [user, setUser] = useRecoilState(userState);
     const [loading, setLoading] = useState<boolean>(true);
+
+    // must have
     const socketTalons = useSocket();
 
     // router

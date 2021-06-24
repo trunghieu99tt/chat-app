@@ -1,11 +1,21 @@
 .root {
     padding: 0.5rem;
-    transition: all 0.5s;
+    transition: all 0.2s;
+    position: relative;
+    filter: blur(0);
+    border-radius: 5px;
+    margin-bottom: 2rem;
 }
 
 .root:hover {
     background: rgba(256, 256, 256, 0.2);
+    box-shadow: 0 0 35px rgb(255 255 255 / 35%);
+    transform: translateY(-5px);
 }
+
+/* .root:not(:hover) {
+    filter: blur(1px);
+} */
 
 .content {
     display: flex;
@@ -40,4 +50,16 @@
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
+}
+
+.itemOutline {
+    --dist: -5px;
+    position: absolute;
+    top: var(--dist);
+    left: var(--dist);
+    right: var(--dist);
+    bottom: var(--dist);
+    border: 5px solid var(--mGray1);
+    border-radius: 10px;
+    z-index: 1;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { connectedUsersState, userState } from "../../states/user.state";
 import { Socket } from "./socket";
 import { channelState } from "../../states/room.state";
@@ -10,11 +10,14 @@ const useSocket = () => {
     const setChannels = useSetRecoilState(channelState);
     const user = useRecoilValue(userState);
 
+
     useEffect(() => {
         const socket = new Socket().socket;
         socketInstance.current = socket;
         init();
     }, [])
+
+
 
     const init = () => {
         const socket = (socketInstance.current as any);
@@ -26,7 +29,6 @@ const useSocket = () => {
             setConnectedUsers(res);
         });
         socket.on('rooms', (res: any) => {
-            console.log(`res`, res)
             setChannels(res);
         })
     }
@@ -60,34 +62,19 @@ const useSocket = () => {
         }
     }
 
+    const updateChannel = (channel: any) => {
+        const username = user?.username;
+        if (username) {
+            (socketInstance.current as any).emit('updateRoom', { channel, username });
+        }
+    }
 
-
-    // const getConnectedUsers = () => {
-    //     try {
-    //         (socketInstance.current! as any).on('users', (res: any) => {
-    //             setConnectedUsers(res);
-    //         })
-    //     } catch (error) {
-    //         toast.error("Socket disconnected");
-    //     }
-    // }
-
-    // const getChannels = () => {
-    //     console.log(`socketInstance.current`, socketInstance.current);df
-    //     try {
-    //         (socketInstance.current! as any).on('rooms', (res: any) => {
-    //             console.log(`res`, res)
-    //             setChannels(res);
-    //         })
-    //     } catch (error) {
-    //         toast.error("Socket disconnected");
-    //     }
-    // }
 
     return {
         addMessage,
         joinRoom,
-        createChannel
+        createChannel,
+        updateChannel
     }
 
 }

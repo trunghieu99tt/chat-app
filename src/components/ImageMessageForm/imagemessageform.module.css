@@ -3,7 +3,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40rem;
+    width: 30rem;
     background: #36393f;
     border-radius: var(--rounded-lg);
     z-index: 3;
@@ -43,17 +43,19 @@
     margin-left: 10%;
     color: #fff;
     font-weight: 600;
+    font-size: 14px;
 }
 
 .message {
     margin: 1.5rem;
+    margin-bottom: 0;
 }
 
 .message label {
     color: #fff;
     display: block;
     margin-bottom: 1rem;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .input {
@@ -72,6 +74,11 @@
     gap: 1rem;
     margin: 1rem;
     color: #fff;
+}
+
+.btnGroup button {
+    font-size: 14px;
+    outline: none;
 }
 
 .btnSubmit {

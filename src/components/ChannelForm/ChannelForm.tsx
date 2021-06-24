@@ -1,4 +1,7 @@
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+// components
 import Mask from "../Mask";
 
 // styles
@@ -6,21 +9,44 @@ import classes from "./channelForm.module.css";
 
 // talons
 import { useChannelForm } from "./useChannelForm";
+import { iChannel } from "../../types/channel.types";
 
 interface Props {
     closeForm: () => void;
+    channel?: iChannel;
 }
 
-const ChannelForm = ({ closeForm }: Props) => {
+const initState = {
+    scale: 0,
+    top: "50%",
+    left: "50%",
+    x: "-50%",
+    y: "-50%",
+    opacity: 0,
+};
+
+const ChannelForm = ({ closeForm, channel }: Props) => {
     const { values, onSubmit, onChange, channelImage } = useChannelForm({
         closeForm,
+        channel,
     });
 
     return (
-        <React.Fragment>
+        <AnimatePresence>
             <Mask onClick={closeForm} />
-
-            <div className={classes.root}>
+            <motion.div
+                className={classes.root}
+                initial={initState}
+                animate={{
+                    ...initState,
+                    scale: 1,
+                    opacity: 1,
+                }}
+                exit={initState}
+                transition={{
+                    values: 0.1,
+                }}
+            >
                 <h3 className={classes.title}>New Channel</h3>
                 <form onSubmit={onSubmit}>
                     <div className="mb-6">
@@ -72,8 +98,8 @@ const ChannelForm = ({ closeForm }: Props) => {
                         Save
                     </button>
                 </form>
-            </div>
-        </React.Fragment>
+            </motion.div>
+        </AnimatePresence>
     );
 };
 

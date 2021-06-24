@@ -1,11 +1,14 @@
 import React from "react";
-import { iFile } from "../../types/message.types";
+import { AnimatePresence, motion } from "framer-motion";
 
 // utils
 import mergeClasses from "../../utils/mergeClasses";
 
 // styles
 import defaultClasses from "./imagemessageform.module.css";
+
+// types
+import { iFile } from "../../types/message.types";
 
 interface Props {
     classes?: object;
@@ -14,6 +17,15 @@ interface Props {
     onChange: (event: any) => void;
     data: iFile;
 }
+
+const initState = {
+    scale: 0,
+    top: "50%",
+    left: "50%",
+    x: "-50%",
+    y: "-50%",
+    opacity: 0,
+};
 
 const ImageMessageForm = ({
     classes: propsClasses,
@@ -25,9 +37,21 @@ const ImageMessageForm = ({
     const classes = mergeClasses(defaultClasses, propsClasses);
 
     return (
-        <React.Fragment>
+        <AnimatePresence>
             <div className={classes.mask} onClick={onCancel}></div>
-            <section className={classes.root}>
+            <motion.section
+                className={classes.root}
+                initial={initState}
+                animate={{
+                    ...initState,
+                    scale: 1,
+                    opacity: 1,
+                }}
+                exit={initState}
+                transition={{
+                    values: 0.1,
+                }}
+            >
                 <form className={classes.main} onSubmit={onSubmit}>
                     <div className={classes.imageField}>
                         <figure>
@@ -57,8 +81,8 @@ const ImageMessageForm = ({
                         </button>
                     </div>
                 </form>
-            </section>
-        </React.Fragment>
+            </motion.section>
+        </AnimatePresence>
     );
 };
 

@@ -1,11 +1,33 @@
 .root {
     background: var(--mGray5);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    gap: 2rem;
 }
 
 .heading {
-    color: #fff;
     font-size: 1.5rem;
+}
+
+.sub {
+    font-size: 1rem;
+}
+
+.image {
+    --image-size: 30rem;
+    -webkit-mask-image: url("../../static/images/mask.svg");
+    mask-image: url("../../static/images/mask.svg");
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    width: var(--image-size);
+    height: var(--image-size);
+    object-fit: cover;
+    will-change: transform;
 }

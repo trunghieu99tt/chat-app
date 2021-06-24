@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-
 // talons
 import { useChat } from "./useChat";
 
@@ -67,7 +66,11 @@ const Chat = () => {
                         {messages &&
                             Object.entries(messages).map(([key, value]) => {
                                 return (
-                                    <MessageGroup day={key} messages={value} />
+                                    <MessageGroup
+                                        day={key}
+                                        messages={value}
+                                        key={`messageGroup-${key}`}
+                                    />
                                 );
                             })}
                     </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // utils
 import mergeClasses from "../../utils/mergeClasses";
@@ -14,16 +15,29 @@ import defaultRoomImage from "../../static/images/default_room.png";
 import { iChannel } from "../../types/channel.types";
 
 interface Props {
-    classes?: object;
     data: iChannel;
+    classes?: object;
+    isSelected: boolean;
+    onHover: () => void;
+    onLeave: () => void;
 }
 
-const ChannelListItem = ({ classes: propsClasses, data }: Props) => {
+const ChannelListItem = ({
+    classes: propsClasses,
+    data,
+    isSelected,
+    onHover,
+}: Props) => {
     const classes = mergeClasses(defaultClasses, propsClasses);
 
     return (
-        <article className={classes.root}>
-            <Link to={`/room/${data._id}`}>
+        <Link to={`/room/${data._id}`}>
+            <motion.article
+                className={classes.root}
+                onHoverStart={() => {
+                    onHover();
+                }}
+            >
                 <figure className={classes.content}>
                     <img
                         src={data?.image || defaultRoomImage}
@@ -34,9 +48,24 @@ const ChannelListItem = ({ classes: propsClasses, data }: Props) => {
                         {data.name}
                     </figcaption>
                 </figure>
-            </Link>
-        </article>
+                {isSelected && (
+                    <motion.div
+                        layoutId="contactCard-outline"
+                        className={classes.itemOutline}
+                        initial={false}
+                        animate={{ borderColor: "var(--mBlue1)" }}
+                        transition={spring}
+                    ></motion.div>
+                )}
+            </motion.article>
+        </Link>
     );
+};
+
+const spring = {
+    type: "spring",
+    stiffness: 500,
+    damping: 30,
 };
 
 export default ChannelListItem;

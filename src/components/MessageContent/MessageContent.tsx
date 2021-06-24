@@ -11,6 +11,7 @@ import defaultAvatar from "../../static/images/default.png";
 
 // styles
 import classes from "./messageContent.module.css";
+import { SRLWrapper } from "simple-react-lightbox";
 
 interface Props {
     data: iMessage;
@@ -54,13 +55,18 @@ const MessageContent = ({ data }: Props) => {
                 </div>
                 <p className={classes.content}>{data.content}</p>
                 {data?.file && (
-                    <figure>
-                        <img
-                            className="w-20 h-20"
-                            src={data?.file || ""}
-                            alt={`${fullName}-avatar`}
-                        />
-                    </figure>
+                    <SRLWrapper>
+                        <figure>
+                            <img
+                                className="w-20 h-20"
+                                src={data?.file || ""}
+                                alt={`${fullName}-message`}
+                                onLoad={() => {
+                                    console.log("Loaded");
+                                }}
+                            />
+                        </figure>
+                    </SRLWrapper>
                 )}
             </div>
         </article>

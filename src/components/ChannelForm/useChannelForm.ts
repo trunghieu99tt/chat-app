@@ -1,26 +1,26 @@
 import { useState } from "react";
 import client from "../../api/client";
 import { useSocket } from "../../talons/Socket/useSocket";
+import { iChannel } from "../../types/channel.types";
 
 type Props = {
     closeForm: () => void;
+    channel?: iChannel;
 }
 
-const useChannelForm = ({ closeForm }: Props) => {
-
-    const { createChannel } = useSocket();
-
+const useChannelForm = ({ closeForm, channel }: Props) => {
+    const { createChannel, updateChannel } = useSocket();
     const [channelImage, setChannelImage] = useState<{
         file: File | null,
         url: string,
     }>({
         file: null,
-        url: ""
+        url: channel?.image || ''
     })
 
     const [values, setValues] = useState<any>({
-        name: '',
-        description: '',
+        name: channel?.name || '',
+        description: channel?.description || '',
     })
 
     const onSubmit = async (event: any) => {
@@ -34,10 +34,19 @@ const useChannelForm = ({ closeForm }: Props) => {
                 image = response.data;
             }
         }
-        createChannel({
-            ...values,
-            image
-        });
+        if (!channel) {
+            createChannel({
+                ...values,
+                image
+            });
+        } else {
+            updateChannel({
+                ...channel,
+                ...values,
+                image: image !== '' ? image : channel.image
+            })
+        }
+
         closeForm();
     }
 
