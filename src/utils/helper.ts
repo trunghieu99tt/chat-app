@@ -14,5 +14,13 @@ const getDaysDiffBetweenDates = (date1: Date, date2: Date) => {
     return Math.ceil(diff / (1000 * 3600 * 24));
 }
 
+const urlify = (text: string) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, '<a href="$1" target="_blank">$1</a>')
+}
 
-export { formatNumber, randomDate, getDaysDiffBetweenDates };
+const isEqual = (objA: any, objB: any) => JSON.stringify(objA) === JSON.stringify(objB);
+
+
+
+export { formatNumber, randomDate, getDaysDiffBetweenDates, urlify, isEqual };

@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil";
 import client from "../../api/client";
 import { userState } from "../../states/user.state";
 import { toast } from 'react-toastify';
+import { useState } from "react";
 
 
 type Props = {
@@ -26,6 +27,8 @@ const useAuth = ({ isRegister = false }: Props) => {
     const { register, handleSubmit } = useForm();
     const history = useHistory();
     const setUser = useSetRecoilState(userState);
+
+    const [visibleEmailForm, setVisibleEmailForm] = useState<boolean>(false);
 
     const onSubmit = async (formData: any) => {
         if (!isRegister)
@@ -79,10 +82,25 @@ const useAuth = ({ isRegister = false }: Props) => {
         }
     }
 
+    const handleForgotPassword = async () => {
+        try {
+
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
+
+    const onCloseEmailForm = () => setVisibleEmailForm(false);
+
+    const onOpenEmailForm = () => setVisibleEmailForm(true);
+
     return {
         register,
+        visibleEmailForm,
         handleLogout,
-        handleSubmit: handleSubmit(onSubmit)
+        onCloseEmailForm,
+        handleSubmit: handleSubmit(onSubmit),
+        handleForgotPassword, onOpenEmailForm
     }
 }
 

@@ -15,28 +15,31 @@ import { AiOutlineLeft } from "react-icons/ai";
 
 // states
 import { fullNameSelector, userState } from "../../../states/user.state";
+import { useTranslation } from "react-i18next";
 
 const EditMyAccount = () => {
     const user = useRecoilValue(userState);
     const fullName = useRecoilValue(fullNameSelector);
 
+    const { t } = useTranslation();
+
     const { register, goBack, onChangePhoto, userPhoto, handleSubmit } =
         useEditMyAccount();
 
     return (
-        <section className="flex flex-col justify-center items-center mt-12">
+        <section className="flex flex-col justify-center items-center mt-12 text-white">
             <button
                 className="w-1/2 text-left mb-6 flex gap-2 items-center text-mBlue1"
                 onClick={goBack}
             >
                 <AiOutlineLeft />
-                Back
+                {t("button.back")}
             </button>
             <div className="px-12 py-7 border-none border-mGray1 rounded-xl sm:w-full sm:mx-2 md:w-3/4 md:border-solid md:border-mGray1 md:border lg:w-1/2 ">
-                <h2 className="text-4xl mb-2">Change info</h2>
-                <h3 className="text-lg mb-12 font-light text-mGray1">
+                <h2 className="text-4xl mb-2">{t("account.changeInfo")}</h2>
+                {/* <h3 className="text-lg mb-12 font-light text-mGray1">
                     Changes will be reflected to every services
-                </h3>
+                </h3> */}
 
                 <div className="flex gap-7 mb-8 items-center">
                     <Input
@@ -63,7 +66,7 @@ const EditMyAccount = () => {
                         htmlFor="photo"
                         className="text-mGray1 text-xss uppercase cursor-pointer"
                     >
-                        Change photo
+                        {t("label.changePhoto")}
                     </label>
                 </div>
 
@@ -73,7 +76,7 @@ const EditMyAccount = () => {
                             htmlFor="username"
                             className="editMyAccount__inputLabel"
                         >
-                            Username
+                            {t("label.username")}
                         </label>
                         <Input
                             name="username"
@@ -90,7 +93,7 @@ const EditMyAccount = () => {
                         htmlFor="firstName"
                         className="editMyAccount__inputLabel"
                     >
-                        First Name
+                        {t("label.firstName")}
                     </label>
                     <Input
                         name="firstName"
@@ -107,7 +110,7 @@ const EditMyAccount = () => {
                         htmlFor="lastName"
                         className="editMyAccount__inputLabel"
                     >
-                        Last Name
+                        {t("label.lastName")}
                     </label>
                     <Input
                         name="lastName"
@@ -123,7 +126,7 @@ const EditMyAccount = () => {
                         htmlFor="lastName"
                         className="editMyAccount__inputLabel"
                     >
-                        Bio
+                        {t("account.bio")}
                     </label>
                     <textarea
                         name="bio"
@@ -140,7 +143,7 @@ const EditMyAccount = () => {
                         htmlFor="phone"
                         className="editMyAccount__inputLabel"
                     >
-                        Phone
+                        {t("account.phone")}
                     </label>
                     <Input
                         name="phone"
@@ -156,7 +159,7 @@ const EditMyAccount = () => {
                         htmlFor="email"
                         className="editMyAccount__inputLabel"
                     >
-                        Email
+                        {t("account.email")}
                     </label>
                     <Input
                         name="email"
@@ -172,7 +175,7 @@ const EditMyAccount = () => {
                         htmlFor="password"
                         className="editMyAccount__inputLabel"
                     >
-                        Password
+                        {t("account.password")}
                     </label>
                     <Input
                         name="password"
@@ -187,7 +190,7 @@ const EditMyAccount = () => {
                     className="mt-8 bg-mBlue1 text-white px-6 py-2 rounded-lg"
                     onClick={handleSubmit}
                 >
-                    Save
+                    {t("button.save")}
                 </button>
             </div>
         </section>

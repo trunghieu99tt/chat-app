@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Picker from "emoji-picker-react";
+
+// talons
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 // utils
 import mergeClasses from "../../utils/mergeClasses";
@@ -15,6 +18,7 @@ import { HiOutlineEmojiHappy } from "react-icons/hi";
 
 // styles
 import defaultClasses from "./textmessageform.module.css";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     classes?: object;
@@ -33,13 +37,19 @@ const TextMessageForm = ({
     onChange,
     setChosenEmoji,
 }: Props) => {
+    const { t } = useTranslation();
+
     const [isVisibleMedia, setIsVisibleMedia] = useState<boolean>(true);
     const [showEmoji, setShowEmoji] = useState<boolean>(false);
     const [showRecord, setShowRecord] = useState<boolean>(false);
 
+    const emojiDiv = useRef() as React.MutableRefObject<HTMLDivElement>;
+
     const toggleMediaGroup = () => setIsVisibleMedia((value) => !value);
     const toggleShowEmoji = () => setShowEmoji((value) => !value);
     const toggleShowRecord = () => setShowRecord((value) => !value);
+
+    useOnClickOutside(emojiDiv, () => setShowEmoji(false));
 
     const onEmojiClick = (event: any, emojiObject: any) => {
         setChosenEmoji(emojiObject);
@@ -49,13 +59,13 @@ const TextMessageForm = ({
 
     return (
         <form onSubmit={onSubmit} className={classes.root}>
-            {isVisibleMedia && (
-                <AnimatePresence>
+            <AnimatePresence>
+                {isVisibleMedia && (
                     <motion.div
                         className={classes.mediaGroup}
-                        initial={{ y: 0, opacity: 0 }}
-                        animate={{ y: "-110%", opacity: 1 }}
-                        exit={{ y: 0, opacity: 0 }}
+                        initial={{ y: 0, opacity: 0, zIndex: -1 }}
+                        animate={{ y: "-110%", opacity: 1, zIndex: 0 }}
+                        exit={{ y: 0, opacity: 0, zIndex: -1 }}
                     >
                         <div className={classes.mediaItem}>
                             <input
@@ -70,7 +80,7 @@ const TextMessageForm = ({
                             </label>
                         </div>
 
-                        <div className={classes.mediaItem}>
+                        <div className={classes.mediaItem} ref={emojiDiv}>
                             {showEmoji && (
                                 <Picker
                                     onEmojiClick={onEmojiClick}
@@ -88,14 +98,16 @@ const TextMessageForm = ({
                         </div>
 
                         <div className={classes.mediaItem}>
-                            {showRecord && <VoiceMessageForm />}
+                            {showRecord && (
+                                <VoiceMessageForm closeRecord={setShowRecord} />
+                            )}
                             <button type="button" onClick={toggleShowRecord}>
                                 <BsMic />
                             </button>
                         </div>
                     </motion.div>
-                </AnimatePresence>
-            )}
+                )}
+            </AnimatePresence>
             <div className="w-6 h-6 flex items-center justify-center bg-m">
                 <button
                     type="button"
@@ -108,9 +120,10 @@ const TextMessageForm = ({
             <input
                 type="text"
                 name="message"
-                placeholder="Type a message here"
+                placeholder={t("placeholder.message")}
                 className={classes.textInput}
                 value={value}
+                required
                 onChange={onChange}
             />
             <button className={classes.submitBtn} onClick={onSubmit}>

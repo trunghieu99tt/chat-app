@@ -1,0 +1,35 @@
+.root {
+    position: fixed;
+    right: 2rem;
+    top: 1rem;
+    min-width: 5rem;
+    color: #fff;
+}
+
+.list {
+    position: absolute;
+    background-color: var(--mGray2);
+    padding: 0.5rem;
+    min-width: 6rem;
+    right: 0;
+}
+
+.listItem {
+    margin-bottom: 0.5rem;
+    background: rgba(256, 256, 256, 0.2);
+    border-radius: 5px;
+}
+
+.listItem button,
+.curr {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.icon {
+    --size: 2rem;
+    width: var(--size);
+    height: var(--size);
+    object-fit: cover;
+}

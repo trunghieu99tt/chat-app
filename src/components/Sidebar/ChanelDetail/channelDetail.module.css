@@ -1,3 +1,64 @@
+.detail {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    top: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.toggleDropdown {
+    color: #fff;
+}
+
+.toggleDropdown svg {
+    --size: 1.25rem;
+    width: var(--size);
+    height: var(--size);
+}
+
+.dropdown {
+    position: absolute;
+    top: 2rem;
+    width: 65%;
+    right: 0.5rem;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.dropdownItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.dropdownItem:not(:last-child) {
+    border-bottom: 1px solid #777;
+}
+
+.dropdownItem span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8e9297;
+}
+
+.dropdownItem.danger,
+.dropdownItem.danger span {
+    color: red;
+}
+
 .channelImage {
     --size: 10rem;
     width: 100%;
@@ -6,6 +67,7 @@
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 15px rgb(255 255 255 / 30%);
+    filter: brightness(0.6);
 }
 
 .channelImage img {
@@ -17,7 +79,7 @@
 .channelName {
     color: #fff;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -43,8 +105,7 @@
 }
 
 .memberContainer {
-    margin-bottom: 1rem;
-    margin-top: 3rem;
+    /* margin-bottom: 1rem; */
     max-height: 20rem;
     overflow: auto;
 }
@@ -60,9 +121,13 @@
 .memberHeading {
     font-size: 12px;
     text-transform: uppercase;
-    color: #fff;
+    letter-spacing: 0.5px;
+    color: #8e9297;
     font-weight: 600;
     margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 .member {

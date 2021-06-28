@@ -15,6 +15,7 @@ import defaultRoomImage from "../../static/images/default_room.png";
 
 // classes
 import classes from "./chat.module.css";
+import { useLang } from "../../talons/Lang/useLang";
 
 const Chat = () => {
     const {
@@ -30,6 +31,8 @@ const Chat = () => {
     } = useChat();
 
     const messageDiv = useRef<HTMLElement | null>(null);
+
+    const { changeLang } = useLang();
 
     useEffect(() => {
         if (messageDiv && messageDiv.current) {
@@ -86,6 +89,7 @@ const Chat = () => {
                     />
                 </div>
             </main>
+            <aside className={classes.aside}></aside>
         </section>
     );
 };

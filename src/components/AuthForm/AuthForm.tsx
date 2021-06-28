@@ -19,6 +19,7 @@ import { MdLock } from "react-icons/md";
 
 // styles
 import defaultClasses from "./authform.module.css";
+import EmailForm from "../EmailForm";
 
 interface Props {
     classes?: object;
@@ -28,113 +29,139 @@ interface Props {
 const AuthForm = ({ classes: propsClasses, isRegister = false }: Props) => {
     const classes = mergeClasses(defaultClasses, propsClasses);
 
-    const { handleSubmit, register } = useAuth({ isRegister });
+    const {
+        visibleEmailForm,
+        handleSubmit,
+        register,
+        handleForgotPassword,
+        onCloseEmailForm,
+        onOpenEmailForm,
+    } = useAuth({
+        isRegister,
+    });
 
     return (
-        <section className={classes.root}>
-            <div className="max-w-lg rounded-mXl p-12 border-none md:border md:border-solid md:border-mGray1">
-                <Logo />
-                <h4>Join thousands of learners from around the world </h4>
-                <p>
-                    Master web development by making real-life projects. There
-                    are multiple paths for you to choose
-                </p>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <Input
-                        name="username"
-                        placeholder="Username"
-                        icon={<BiUser />}
-                        ref={register}
-                        type="text"
-                        required
-                    />
-                    <Input
-                        name="password"
-                        placeholder="Password"
-                        icon={<MdLock />}
-                        ref={register}
-                        type="password"
-                        required
-                    />
+        <React.Fragment>
+            {visibleEmailForm && (
+                <EmailForm
+                    onSubmit={handleForgotPassword}
+                    onClose={onCloseEmailForm}
+                />
+            )}
+            <section className={classes.root}>
+                <div className="max-w-lg rounded-mXl p-12 border-none md:border md:border-solid md:border-mGray1 bg-white">
+                    <Logo />
+                    <h4>Join thousands of learners from around the world </h4>
+                    <p>
+                        Master web development by making real-life projects.
+                        There are multiple paths for you to choose
+                    </p>
+                    <form className={classes.form} onSubmit={handleSubmit}>
+                        <Input
+                            name="username"
+                            placeholder="Username"
+                            icon={<BiUser />}
+                            ref={register}
+                            type="text"
+                            required
+                        />
+                        <Input
+                            name="password"
+                            placeholder="Password"
+                            icon={<MdLock />}
+                            ref={register}
+                            type="password"
+                            required
+                        />
 
-                    {isRegister && (
+                        {isRegister && (
+                            <React.Fragment>
+                                <Input
+                                    name="passwordConfirm"
+                                    placeholder="Password Confirm"
+                                    icon={<MdLock />}
+                                    ref={register}
+                                    type="password"
+                                    required
+                                />
+                                <Input
+                                    name="email"
+                                    placeholder="Email"
+                                    icon={<AiOutlineMail />}
+                                    ref={register}
+                                    type="email"
+                                    required
+                                />
+                                <Input
+                                    name="phone"
+                                    placeholder="Phone"
+                                    icon={<BiPhone />}
+                                    ref={register}
+                                    type="text"
+                                    required
+                                />
+                                <Input
+                                    name="firstName"
+                                    placeholder="First Name"
+                                    icon={<BiUser />}
+                                    ref={register}
+                                    type="text"
+                                    required
+                                />
+                                <Input
+                                    name="lastName"
+                                    placeholder="Last Name"
+                                    icon={<BiUser />}
+                                    ref={register}
+                                    type="text"
+                                    required
+                                />
+                                <Input
+                                    name="bio"
+                                    placeholder="Bio"
+                                    icon={<BiUser />}
+                                    ref={register}
+                                    type="text"
+                                    required
+                                />
+                            </React.Fragment>
+                        )}
+
+                        <button
+                            className="min-w-full bg-mBlue1 p-2 text-white font-semibold rounded-lg mb-8"
+                            type="submit"
+                        >
+                            Start coding now
+                        </button>
+                    </form>
+
+                    <p className="text-mGray1 text-center">
+                        or continue with these social profile
+                    </p>
+
+                    <SocialLoginIcons />
+
+                    {isRegister ? (
+                        <p className="text-center text-mGray1 mt-5">
+                            Already a member? <Link to="/login"></Link>
+                        </p>
+                    ) : (
                         <React.Fragment>
-                            <Input
-                                name="passwordConfirm"
-                                placeholder="Password Confirm"
-                                icon={<MdLock />}
-                                ref={register}
-                                type="password"
-                                required
-                            />
-                            <Input
-                                name="email"
-                                placeholder="Email"
-                                icon={<AiOutlineMail />}
-                                ref={register}
-                                type="email"
-                                required
-                            />
-                            <Input
-                                name="phone"
-                                placeholder="Phone"
-                                icon={<BiPhone />}
-                                ref={register}
-                                type="text"
-                                required
-                            />
-                            <Input
-                                name="firstName"
-                                placeholder="First Name"
-                                icon={<BiUser />}
-                                ref={register}
-                                type="text"
-                                required
-                            />
-                            <Input
-                                name="lastName"
-                                placeholder="Last Name"
-                                icon={<BiUser />}
-                                ref={register}
-                                type="text"
-                                required
-                            />
-                            <Input
-                                name="bio"
-                                placeholder="Bio"
-                                icon={<BiUser />}
-                                ref={register}
-                                type="text"
-                                required
-                            />
+                            <p className="text-center text-mGray1 mt-5">
+                                Doesn't have account?{" "}
+                                <Link to="/signup">Register</Link>{" "}
+                            </p>
+                            <button
+                                onClick={onOpenEmailForm}
+                                className={classes.forgotPassword}
+                            >
+                                Forgot your password?
+                            </button>
                         </React.Fragment>
                     )}
-
-                    <button
-                        className="min-w-full bg-mBlue1 p-2 text-white font-semibold rounded-lg mb-8"
-                        type="submit"
-                    >
-                        Start coding now
-                    </button>
-                </form>
-
-                <p className="text-mGray1 text-center">
-                    or continue with these social profile
-                </p>
-
-                <SocialLoginIcons />
-
-                {isRegister ? (
-                    <p className="text-center text-mGray1 mt-5">
-                        Already a member? <Link to="/login"></Link>
-                    </p>
-                ) : (
-                    <p className="text-center text-mGray1 mt-5">
-                        Doesn't have account? <Link to="/signup">Register</Link>{" "}
-                    </p>
-                )}
-            </div>
-        </section>
+                </div>
+            </section>
+        </React.Fragment>
     );
 };
 

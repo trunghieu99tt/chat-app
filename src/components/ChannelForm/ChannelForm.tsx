@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // components
 import Mask from "../Mask";
@@ -32,7 +32,7 @@ const ChannelForm = ({ closeForm, channel }: Props) => {
     });
 
     return (
-        <AnimatePresence>
+        <React.Fragment>
             <Mask onClick={closeForm} />
             <motion.div
                 className={classes.root}
@@ -42,7 +42,7 @@ const ChannelForm = ({ closeForm, channel }: Props) => {
                     scale: 1,
                     opacity: 1,
                 }}
-                exit={initState}
+                exit={{ ...initState, scale: 1.25 }}
                 transition={{
                     values: 0.1,
                 }}
@@ -99,7 +99,7 @@ const ChannelForm = ({ closeForm, channel }: Props) => {
                     </button>
                 </form>
             </motion.div>
-        </AnimatePresence>
+        </React.Fragment>
     );
 };
 

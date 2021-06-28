@@ -20,3 +20,11 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.forgotPassword {
+    text-align: center;
+    margin: 1rem auto;
+    display: block;
+    color: blue;
+    text-decoration: underline;
+}

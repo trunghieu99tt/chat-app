@@ -8,7 +8,7 @@ interface Props {
 
 const MyAccountHeader = ({ classes: propsClasses }: Props) => {
     return (
-        <header className="container mx-auto my-0 flex justify-between mt-6">
+        <header className="container mx-auto my-0 flex justify-between pt-6">
             <Logo />
             <MyAccountController />
         </header>

@@ -1,8 +1,8 @@
 import React from "react";
-import ReactPlayer from "react-player";
+import { SRLWrapper } from "simple-react-lightbox";
 
 // utils
-import { getDaysDiffBetweenDates } from "../../utils/helper";
+import { urlify } from "../../utils/helper";
 
 // types
 import { iMessage } from "../../types/message.types";
@@ -12,32 +12,20 @@ import defaultAvatar from "../../static/images/default.png";
 
 // styles
 import classes from "./messageContent.module.css";
-import { SRLWrapper } from "simple-react-lightbox";
+import VoiceMessageContent from "../VoiceMessageContent";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     data: iMessage;
 }
 
 const MessageContent = ({ data }: Props) => {
-    const today = new Date();
+    const { t } = useTranslation();
+
     const messageDate = new Date(data.createdAt);
-
-    const diff = getDaysDiffBetweenDates(today, messageDate);
     const time = messageDate.toLocaleTimeString("en-US");
-
     let date = messageDate.toLocaleString().split(",")[0];
-
-    switch (diff) {
-        case 1:
-            date = "today";
-            break;
-        case 2:
-            date = "yesterday";
-            break;
-    }
-
     const fullName = `${data?.author?.firstName} ${data?.author?.lastName}`;
-
     let fileContent = null;
 
     if (data.file) {
@@ -45,11 +33,7 @@ const MessageContent = ({ data }: Props) => {
             process.env.REACT_APP_FIREBASE_PROJECTID &&
             data.file.includes(process.env.REACT_APP_FIREBASE_PROJECTID)
         ) {
-            fileContent = (
-                <video controls>
-                    <source src={data.file} type="audio/webm" />
-                </video>
-            );
+            fileContent = <VoiceMessageContent url={data.file} />;
         } else {
             fileContent = (
                 <figure>
@@ -79,10 +63,13 @@ const MessageContent = ({ data }: Props) => {
                 <div>
                     <span className={classes.name}>{`${fullName} `}</span>
                     <span className={classes.time}>
-                        {date} at {time}
+                        {date} {t("at")} {time}
                     </span>
                 </div>
-                <p className={classes.content}>{data.content}</p>
+                <p
+                    className={classes.content}
+                    dangerouslySetInnerHTML={{ __html: urlify(data.content) }}
+                ></p>
                 {data?.file && <SRLWrapper>{fileContent}</SRLWrapper>}
             </div>
         </article>

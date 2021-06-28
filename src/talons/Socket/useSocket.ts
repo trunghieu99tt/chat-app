@@ -3,12 +3,14 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { connectedUsersState, userState } from "../../states/user.state";
 import { Socket } from "./socket";
 import { channelState } from "../../states/room.state";
+import { iUser } from "../../types/user.types";
+import { isEqual } from "../../utils/helper";
 
 const useSocket = () => {
     const socketInstance = useRef(null);
-    const setConnectedUsers = useSetRecoilState(connectedUsersState);
+    const [connectedUsers, setConnectedUsers] = useRecoilState(connectedUsersState);
+    const [user, setUser] = useRecoilState(userState)
     const setChannels = useSetRecoilState(channelState);
-    const user = useRecoilValue(userState);
 
 
     useEffect(() => {
@@ -16,6 +18,17 @@ const useSocket = () => {
         socketInstance.current = socket;
         init();
     }, [])
+
+
+
+    useEffect(() => {
+        if (connectedUsers && connectedUsers.length > 0 && user) {
+            const userDB = connectedUsers?.find((connectedUser: iUser) => connectedUser._id === user._id);
+            if (userDB && !isEqual(userDB, user)) {
+                setUser(userDB);
+            }
+        }
+    }, [connectedUsers, user]);
 
 
 
@@ -29,6 +42,7 @@ const useSocket = () => {
             setConnectedUsers(res);
         });
         socket.on('rooms', (res: any) => {
+            // console.log(`res`, res)
             setChannels(res);
         })
     }
@@ -52,15 +66,19 @@ const useSocket = () => {
         }
     }
 
-    const joinRoom = (roomID: string) => {
+    const joinRoom = (roomID: string, isNew = true) => {
         const username = user?.username;
+        console.log(`username`, username);
         if (username) {
-            (socketInstance.current as any).emit("joinRoom", {
+            const event = isNew ? 'joinNewRoom' : 'joinOldRoom';
+            console.log(`event`, event);
+            (socketInstance.current as any).emit(event, {
                 username,
                 roomID,
             });
         }
     }
+
 
     const updateChannel = (channel: any) => {
         const username = user?.username;
@@ -71,8 +89,8 @@ const useSocket = () => {
 
 
     return {
-        addMessage,
         joinRoom,
+        addMessage,
         createChannel,
         updateChannel
     }

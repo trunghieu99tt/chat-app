@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactMic } from "react-mic";
 import ReactPlayer from "react-player";
 
 // talons
-import { useFirebase } from "../../talons/Firebase/useFirebase";
+import { useVoiceMessageForm } from "./useVoiceMessageForm";
 
 // utils
 import mergeClasses from "../../utils/mergeClasses";
@@ -15,63 +15,33 @@ import { FiSend } from "react-icons/fi";
 
 // styles
 import defaultClasses from "./voicemessageform.module.css";
-import { useEffect } from "react";
-import { useSocket } from "../../talons/Socket/useSocket";
-import { useParams } from "react-router";
+import { useRef } from "react";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 interface Props {
     classes?: object;
+    closeRecord: (value: boolean) => void;
 }
 
-const VoiceMessageForm = ({ classes: propsClasses }: Props) => {
+const VoiceMessageForm = ({ classes: propsClasses, closeRecord }: Props) => {
     const classes = mergeClasses(defaultClasses, propsClasses);
 
-    const [recording, setRecording] = useState<boolean>(false);
-    const [recordData, setRecordData] = useState<any>(null);
+    const {
+        recording,
+        recordData,
+        onRecordData,
+        onStopRecord,
+        sendAudio,
+        startRecording,
+        stopRecording,
+    } = useVoiceMessageForm();
 
-    const { uploadToStorage, fileUrl, setFileUrl } = useFirebase();
-    const params: any = useParams();
-    const { id } = params;
-    const { addMessage } = useSocket();
+    const voiceRecorderRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-    useEffect(() => {
-        if (fileUrl) {
-            sendMessage();
-        }
-    }, [fileUrl]);
-
-    const startRecording = () => {
-        setRecording(true);
-    };
-
-    const stopRecording = () => {
-        setRecording(false);
-    };
-
-    const onRecordData = (recordedBlob: any) => {
-        console.log("chunk of real-time data is: ", recordedBlob);
-    };
-
-    const onStopRecord = (recordedBlob: any) => {
-        console.log("recordedBlob is: ", recordedBlob);
-        setRecordData(recordedBlob);
-    };
-
-    const sendAudio = () => {
-        if (!recordData) return;
-        console.log(`recordData`, recordData);
-        uploadToStorage(recordData.blobURL);
-    };
-
-    const sendMessage = async () => {
-        addMessage("", id, fileUrl);
-        setFileUrl(null);
-        setRecordData(null);
-        setRecording(false);
-    };
+    useOnClickOutside(voiceRecorderRef, () => closeRecord(false));
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} ref={voiceRecorderRef}>
             {recordData && (
                 <ReactPlayer
                     url={recordData.blobURL}

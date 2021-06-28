@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 * {
     box-sizing: border-box;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "Roboto", "Noto Sans", sans-serif;
 }
 
 figure {
@@ -34,10 +35,18 @@ button {
     --mBlack1: #120f13;
 }
 
+#root {
+    background-color: var(--mGray2);
+}
+
 .emoji-search {
     color: #000 !important;
 }
 
 .sound-wave {
     height: 2rem;
+}
+
+textarea {
+    background: transparent;
 }

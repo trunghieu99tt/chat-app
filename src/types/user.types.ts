@@ -11,5 +11,10 @@ export interface iUser {
     isThirdParty?: boolean;
     google?: {
         id: string
-    }
+    };
+    lastJoining: {
+        _id: string,
+        roomId: string,
+        time: Date
+    }[]
 }

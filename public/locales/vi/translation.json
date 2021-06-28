@@ -1,0 +1,44 @@
+{
+    "welcome": "Chào mừng đến với app chat của tôi",
+    "subWelcome": "Tham gia phòng và bắt đầu trò chuyện nào!",
+    "allRoom": "Tất cả các phòng",
+    "roomList": "Danh sách phòng",
+    "search": "Tìm kiếm",
+    "at": "lúc",
+    "tag": {
+      "owner": "Chủ phòng"  
+    },
+    "button": {
+        "delete": "Xóa",
+        "editAccount": "Sửa thông tin cá nhân",
+        "login": "Đăng nhập",
+        "logout": "Đăng xuất",
+        "editRoom": "Sửa thông tin phòng",
+        "deleteRoom": "Xóa thông tin phòng",
+        "leaveRoom": "Rời khỏi phòng",
+        "back": "Quay lại",
+        "save": "Lưu"
+    },
+    "placeholder": {
+      "message": "Nhập tin nhắn..."  
+    },
+    "account": {
+        "personalInfo": "Thông tin cá nhân",
+        "personalInfoSub": "Các thông tin cá nhân cơ bản như tên, ảnh,...",
+        "profile": "Profile",
+        "photo": "Ảnh đại diện",
+        "name": "Tên",
+        "bio": "Mô tả",
+        "phone": "Điện thoại",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "groupChat": "Nhóm chat",
+        "changeInfo": "Sửa thông tin"
+    },
+    "label": {
+        "changePhoto": "Thay đổi ảnh",
+        "username": "username",
+        "firstName": "Tên",
+        "lastName": "Họ"
+    }
+}

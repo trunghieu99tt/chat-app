@@ -10,7 +10,6 @@ import { userState } from "../../states/user.state";
 import { iUser } from "../../types/user.types";
 
 const useChat = () => {
-
     const channels = useRecoilValue(channelState);
     const currentUser = useRecoilValue(userState);
     const params: any = useParams();
@@ -31,11 +30,23 @@ const useChat = () => {
     const currentChannel = channels?.find((e: iChannel) => e._id === id);
 
     useEffect(() => {
+        return () => {
+            joinChannel();
+        }
+    }, []);
+
+    useEffect(() => {
         if (currentChannel) {
             getMessages();
             joinChannel();
         }
-    }, [currentChannel]);
+    }, [id]);
+
+    useEffect(() => {
+        if (currentChannel) {
+            getMessages();
+        }
+    }, [channels])
 
     useEffect(() => {
         if (chosenEmoji) {
@@ -50,8 +61,10 @@ const useChat = () => {
     const onSubmit = async (event: any) => {
         event.preventDefault();
         if (!messageImage.file) {
-            addMessage(message, id);
-            setMessage('');
+            if (message.length > 0) {
+                addMessage(message, id);
+                setMessage('');
+            }
         }
         else {
             const formData = new FormData();
@@ -98,8 +111,11 @@ const useChat = () => {
 
     const joinChannel = () => {
         const isUserRoomMember = currentChannel?.members.find((member: iUser) => member.username === currentUser?.username);
+
         if (!isUserRoomMember) {
             joinRoom(id);
+        } else {
+            joinRoom(id, false);
         }
     }
 
@@ -109,8 +125,6 @@ const useChat = () => {
             url: ''
         })
     }
-
-    console.log(`chosenEmoji`, chosenEmoji);
 
     return {
         message,

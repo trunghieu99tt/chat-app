@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
@@ -9,29 +9,33 @@ import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import SimpleReactLightbox from "simple-react-lightbox";
 
+import "./i18.config";
+
 ReactDOM.render(
     <React.StrictMode>
-        <RecoilRoot>
-            <BrowserRouter>
-                <SimpleReactLightbox>
-                    <App />
-                </SimpleReactLightbox>
-                <ToastContainer
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    style={{
-                        minWidth: "30rem",
-                    }}
-                />
-            </BrowserRouter>
-        </RecoilRoot>
+        <Suspense fallback={<div>Loading...</div>}>
+            <RecoilRoot>
+                <BrowserRouter>
+                    <SimpleReactLightbox>
+                        <App />
+                    </SimpleReactLightbox>
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        style={{
+                            minWidth: "30rem",
+                        }}
+                    />
+                </BrowserRouter>
+            </RecoilRoot>
+        </Suspense>
     </React.StrictMode>,
     document.getElementById("root")
 );

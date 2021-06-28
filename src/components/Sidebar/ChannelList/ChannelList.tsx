@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimateSharedLayout } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // talons
 import { useChannelList } from "./useChannelList";
@@ -16,6 +16,7 @@ import { iChannel } from "../../../types/channel.types";
 
 // styles
 import classes from "./channelList.module.css";
+import { useTranslation } from "react-i18next";
 
 interface Props {}
 
@@ -31,11 +32,15 @@ const ChannelList = (props: Props) => {
         onChangeSearchInput,
     } = useChannelList();
 
+    const { t } = useTranslation();
+
     return (
         <section>
-            {visibleForm && <ChannelForm closeForm={closeForm} />}
+            <AnimatePresence>
+                {visibleForm && <ChannelForm closeForm={closeForm} />}
+            </AnimatePresence>
             <header className="flex justify-between">
-                <p className="text-white text-lg font-bold">Channel</p>
+                <p className="text-white text-lg font-bold">{t("roomList")}</p>
                 <button
                     className="bg-mGray5 rounded-lg p-2 text-white outline-none"
                     onClick={openForm}
@@ -47,27 +52,25 @@ const ChannelList = (props: Props) => {
                 <BsSearch />
                 <input
                     type="text"
-                    placeholder="Search"
+                    placeholder={t("search")}
                     className="input flex-1"
                     value={query}
                     onChange={onChangeSearchInput}
                 />
             </div>
-            <AnimateSharedLayout>
-                <div className={classes.channelList}>
-                    {channelList?.map((channel: iChannel, idx: number) => {
-                        return (
-                            <ChannelListItem
-                                data={channel}
-                                isSelected={selected === idx}
-                                onHover={() => setSelected(idx)}
-                                onLeave={() => setSelected(-1)}
-                                key={`channelListItem-${channel._id}`}
-                            />
-                        );
-                    })}
-                </div>
-            </AnimateSharedLayout>
+            <motion.div className={classes.channelList}>
+                {channelList?.map((channel: iChannel, idx: number) => {
+                    return (
+                        <ChannelListItem
+                            data={channel}
+                            isSelected={selected === idx}
+                            onHover={() => setSelected(idx)}
+                            onLeave={() => setSelected(-1)}
+                            key={`channelListItem-${channel._id}`}
+                        />
+                    );
+                })}
+            </motion.div>
         </section>
     );
 };

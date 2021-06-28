@@ -1,4 +1,5 @@
 import React from "react";
+import LangSelector from "../../components/LangSelector";
 import MyAccountFooter from "./MyAccountFooter";
 import MyAccountHeader from "./MyAccountHeader";
 
@@ -7,6 +8,7 @@ const MyAccountLayout =
     (props: P) => {
         return (
             <React.Fragment>
+                <LangSelector />
                 <MyAccountHeader />
                 <WrappedComponent {...props} />
                 <MyAccountFooter />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import { useRecoilValue } from "recoil";
 import { channelState } from "../../../states/room.state";
@@ -7,19 +7,23 @@ import { iChannel } from "../../../types/channel.types";
 import { iUser } from "../../../types/user.types";
 
 const useChannelDetail = () => {
+
     const params: any = useParams();
     const { id } = params;
 
     const [visibleEdit, setVisibleEdit] = useState<boolean>(false);
+    const [visibleDropdown, setVisibleDropdown] = useState<boolean>(false);
+    const [visibleMembers, setVisibleMembers] = useState<boolean[]>([false, false]);
 
     const channels = useRecoilValue(channelState);
     const currentUser = useRecoilValue(userState);
+    const connectedUsers = useRecoilValue(connectedUsersState);
     const currentChannel = channels?.find((e: iChannel) => e._id === id);
 
     const isCurrentUserOwner =
         currentChannel?.owner.username === currentUser?.username || false;
 
-    const onlineUsers = useRecoilValue(connectedUsersState)?.reduce(
+    const onlineUsers = connectedUsers?.reduce(
         (res: any, user: iUser) => {
             if (user._id) {
                 return {
@@ -49,16 +53,28 @@ const useChannelDetail = () => {
 
     const closeEdit = () => setVisibleEdit(false);
     const openEdit = () => setVisibleEdit(true);
+    const toggleDropdown = () => {
+        setVisibleDropdown(value => !value)
+    };
 
+    const toggleVisibleMember = (idx: number) => {
+        const newVisibleMembers = [...visibleMembers];
+        newVisibleMembers[idx] = !newVisibleMembers[idx];
+        setVisibleMembers(newVisibleMembers);
+    }
 
     return {
         visibleEdit,
-        currentChannel,
+        visibleMembers,
         onlineMembers,
+        currentChannel,
         offlineMembers,
+        visibleDropdown,
         isCurrentUserOwner,
         closeEdit,
         openEdit,
+        toggleDropdown,
+        toggleVisibleMember,
     }
 
 

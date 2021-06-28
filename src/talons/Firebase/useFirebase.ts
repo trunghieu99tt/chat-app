@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import firebase from '../../firebase'
-// import uuidv4 from "uuid/v4";
-
-
+import { v4 as uuidv4 } from 'uuid';
 
 const useFirebase = () => {
 
@@ -22,7 +20,7 @@ const useFirebase = () => {
 
     const uploadToStorage = (imageURL: any) => {
         getFileBlob(imageURL, (blob: Blob) => {
-            firebase.storage().ref('audio').put(blob).then(async (snapshot) => {
+            firebase.storage().ref(`audio/${uuidv4()}`).put(blob).then(async (snapshot) => {
                 const url = await snapshot.ref.getDownloadURL();
                 setFileUrl(url);
             })

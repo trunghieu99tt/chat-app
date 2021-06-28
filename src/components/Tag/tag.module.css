@@ -1,0 +1,9 @@
+.root {
+    position: absolute;
+    right: 1rem;
+    font-size: 12px;
+    color: #fff;
+    background: green;
+    border-radius: 5px;
+    padding: 5px;
+}

@@ -1,15 +1,23 @@
 import React from "react";
+
+// components
 import Sidebar from "./Sidebar";
 
-const ChatLayout =
-    <P extends object>(WrappedComponent: React.ComponentType<P>) =>
-    (props: P) => {
+import classes from "./chatLayout.module.css";
+import LangSelector from "../../components/LangSelector";
+
+const ChatLayout = <P extends object>(
+    WrappedComponent: React.ComponentType<P>
+) => {
+    return (props: P) => {
         return (
-            <div className="h-screen grid grid-cols-2-2-8 overflow-hidden">
+            <div className={classes.root}>
+                <LangSelector />
                 <Sidebar />
                 <WrappedComponent {...props} />
             </div>
         );
     };
+};
 
 export default ChatLayout;

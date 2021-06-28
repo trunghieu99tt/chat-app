@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+import LangSelector from "../../components/LangSelector";
 
 // layout
 import ChatLayout from "../../layout/ChatLayout/Chat.layout";
@@ -10,10 +12,13 @@ import BackgroundImage from "../../static/images/bg.jpg";
 import classes from "./welcome.module.css";
 
 const Welcome = () => {
+    const { t } = useTranslation();
+
     return (
         <section className={classes.root}>
-            <h2 className={classes.heading}>Welcome to my chat app</h2>
-            <p className={classes.sub}>Join a room to start chatting!</p>
+            <LangSelector />
+            <h2 className={classes.heading}>{t("welcome")}</h2>
+            <p className={classes.sub}>{t("subWelcome")}</p>
             <img
                 src={BackgroundImage}
                 alt="background"

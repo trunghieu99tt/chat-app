@@ -1,0 +1,44 @@
+{
+    "welcome": "Welcome to my chat app",
+    "subWelcome": "Join a room to start chatting!",
+    "allRoom": "All room",
+    "roomList": "Room List",
+    "search": "Search",
+    "at": "at",
+    "tag": {
+      "owner": "Owner"  
+    },
+    "button": {
+        "delete": "Delete",
+        "login": "Login",
+        "logout": "Logout",
+        "editAccount": "Edit account info",
+        "editRoom": "Edit room",
+        "deleteRoom": "Delete room",
+        "leaveRoom": "Leave room",
+        "back": "Back",
+        "save": "Save"
+    },
+    "placeholder": {
+      "message": "Type a message here..."  
+    },
+    "account": {
+        "personalInfo": "Personal Info",
+        "personalInfoSub": "Basic Info, like your name and photo",
+        "profile": "Profile",
+        "photo": "Photo",
+        "name": "Name",
+        "bio": "Bio",
+        "phone": "Phone",
+        "email": "Email",
+        "password": "Password",
+        "groupChat": "Group Chat",
+        "changeInfo": "Change Info"
+    },
+    "label": {
+        "changePhoto": "Change photo",
+        "username": "username",
+        "firstName": "First Name",
+        "lastName": "Last name"
+    }
+}
