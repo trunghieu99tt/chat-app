@@ -4,6 +4,7 @@
     top: 1rem;
     min-width: 5rem;
     color: #fff;
+    z-index: 1;
 }
 
 .list {
@@ -32,4 +33,10 @@
     width: var(--size);
     height: var(--size);
     object-fit: cover;
+}
+
+@media (max-width: 500px) {
+    .root {
+        right: 0;
+    }
 }

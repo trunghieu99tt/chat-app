@@ -1,0 +1,71 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.heading {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.subHeading {
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.main {
+    border: none;
+    border: rgb(130, 130, 130);
+    border-radius: 8px;
+}
+
+.mainHeader {
+    padding: 1.75rem 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainHeaderLeft h4 {
+    font-size: 1.5rem;
+}
+
+.mainHeaderLeft p {
+    color: var(--mGray1);
+    font-weight: 500;
+}
+
+.editBtn {
+    border: 1px solid var(--mGray1);
+    border-radius: 8px;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .heading {
+        font-size: 1.5rem;
+    }
+
+    .subHeading {
+        font-size: 1rem;
+    }
+
+    .listItem p:nth-of-type(2) {
+        font-size: 0.9rem;
+    }
+
+    .mainHeader {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .editBtn {
+        padding: 1rem;
+        text-align: center;
+    }
+}

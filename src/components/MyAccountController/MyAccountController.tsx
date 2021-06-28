@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // talons
 import { useAuth } from "../../talons/Auth/useAuth";
@@ -17,7 +18,6 @@ import DefaultAvatar from "../../static/images/default.png";
 
 // states
 import { fullNameSelector, userState } from "../../states/user.state";
-import { useTranslation } from "react-i18next";
 
 const MyAccountController = () => {
     const { t } = useTranslation();
@@ -42,7 +42,7 @@ const MyAccountController = () => {
                 <img
                     src={user?.photo || DefaultAvatar}
                     alt={fullName}
-                    className="w-8 h-8"
+                    className="w-8 h-8 object-cover"
                 />
                 <figcaption className="text-xs font-bold text-white">
                     {fullName}

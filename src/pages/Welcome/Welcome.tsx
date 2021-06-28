@@ -1,9 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import LangSelector from "../../components/LangSelector";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 // layout
 import ChatLayout from "../../layout/ChatLayout/Chat.layout";
+
+// components
+import LangSelector from "../../components/LangSelector";
 
 // images
 import BackgroundImage from "../../static/images/bg.jpg";

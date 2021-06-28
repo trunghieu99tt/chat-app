@@ -6,6 +6,7 @@
     justify-content: center;
     color: #fff;
     gap: 2rem;
+    height: 100%;
 }
 
 .heading {
@@ -30,4 +31,10 @@
     height: var(--image-size);
     object-fit: cover;
     will-change: transform;
+}
+
+@media (max-width: 500px) {
+    .root {
+        padding: 1rem;
+    }
 }

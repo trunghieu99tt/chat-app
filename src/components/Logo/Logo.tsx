@@ -22,7 +22,7 @@ const Logo = ({ classes: propsClasses }: Props) => {
             <Link to={user ? "/" : "/login"}>
                 <img
                     src={
-                        require("../../static/images/devchallenges.svg").default
+                        require("../../static/images/default_room.png").default
                     }
                     alt="logo"
                     width={150}

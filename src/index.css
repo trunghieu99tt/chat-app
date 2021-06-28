@@ -6,8 +6,9 @@
     @apply m-2 cursor-pointer transition-all duration-300;
 }
 
-.dropdownItem {
-    @apply flex gap-3 items-center p-3 cursor-pointer rounded-lg text-xs;
+.dropdownItem a,
+.dropdownItem button {
+    @apply flex gap-3 items-center p-3 cursor-pointer rounded-lg text-sm;
 }
 
 .dropdownItem:hover {
@@ -40,4 +41,10 @@
 
 .input {
     @apply bg-transparent text-sm text-mGray1 ml-4  outline-none;
+}
+
+@media (max-width: 500px) {
+    .editMyAccount__inputGroup {
+        width: 100%;
+    }
 }

@@ -9,7 +9,11 @@ import classes from "./channelForm.module.css";
 
 // talons
 import { useChannelForm } from "./useChannelForm";
+
+// types
 import { iChannel } from "../../types/channel.types";
+import { useRecoilValue } from "recoil";
+import { screenSizeState } from "../../states/app.state";
 
 interface Props {
     closeForm: () => void;
@@ -31,18 +35,41 @@ const ChannelForm = ({ closeForm, channel }: Props) => {
         channel,
     });
 
+    const screenSize = useRecoilValue(screenSizeState);
+
+    let value = {
+        ...initState,
+    };
+
+    if (screenSize !== "DESKTOP") {
+        value = {
+            ...initState,
+            x: "0",
+        };
+    }
+
+    if (screenSize === "MOBILE") {
+        value = {
+            ...initState,
+            left: "0",
+            x: "0",
+            y: "0",
+            top: "25%",
+        };
+    }
+
     return (
         <React.Fragment>
             <Mask onClick={closeForm} />
             <motion.div
                 className={classes.root}
-                initial={initState}
+                initial={value}
                 animate={{
-                    ...initState,
+                    ...value,
                     scale: 1,
                     opacity: 1,
                 }}
-                exit={{ ...initState, scale: 1.25 }}
+                exit={{ ...value, scale: 1.25 }}
                 transition={{
                     values: 0.1,
                 }}

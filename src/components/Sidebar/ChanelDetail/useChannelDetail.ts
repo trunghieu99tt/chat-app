@@ -56,6 +56,7 @@ const useChannelDetail = () => {
     const toggleDropdown = () => {
         setVisibleDropdown(value => !value)
     };
+    const hideDropdown = () => setVisibleDropdown(false);
 
     const toggleVisibleMember = (idx: number) => {
         const newVisibleMembers = [...visibleMembers];
@@ -73,6 +74,7 @@ const useChannelDetail = () => {
         isCurrentUserOwner,
         closeEdit,
         openEdit,
+        hideDropdown,
         toggleDropdown,
         toggleVisibleMember,
     }

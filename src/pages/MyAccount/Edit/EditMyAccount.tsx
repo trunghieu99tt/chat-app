@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // talons
 import { useEditMyAccount } from "./useEditMyAccount";
@@ -15,7 +16,6 @@ import { AiOutlineLeft } from "react-icons/ai";
 
 // states
 import { fullNameSelector, userState } from "../../../states/user.state";
-import { useTranslation } from "react-i18next";
 
 const EditMyAccount = () => {
     const user = useRecoilValue(userState);
@@ -27,20 +27,18 @@ const EditMyAccount = () => {
         useEditMyAccount();
 
     return (
-        <section className="flex flex-col justify-center items-center mt-12 text-white">
+        <section className="block p-4 sm:flex flex-col justify-center items-center mt-12 text-white">
             <button
-                className="w-1/2 text-left mb-6 flex gap-2 items-center text-mBlue1"
+                className="w-1/2 text-left mb-6 flex gap-2 items-center text-white"
                 onClick={goBack}
             >
                 <AiOutlineLeft />
                 {t("button.back")}
             </button>
-            <div className="px-12 py-7 border-none border-mGray1 rounded-xl sm:w-full sm:mx-2 md:w-3/4 md:border-solid md:border-mGray1 md:border lg:w-1/2 ">
-                <h2 className="text-4xl mb-2">{t("account.changeInfo")}</h2>
-                {/* <h3 className="text-lg mb-12 font-light text-mGray1">
-                    Changes will be reflected to every services
-                </h3> */}
-
+            <div className="px-4 pt-0 sm:px-12 sm:py-7 border-none border-mGray1 rounded-xl sm:w-full sm:mx-2 md:w-3/4 md:border-solid md:border-mGray1 md:border lg:w-1/2 ">
+                <h2 className="text-lg sm:text-4xl mb-2">
+                    {t("account.changeInfo")}
+                </h2>
                 <div className="flex gap-7 mb-8 items-center">
                     <Input
                         name="photo"

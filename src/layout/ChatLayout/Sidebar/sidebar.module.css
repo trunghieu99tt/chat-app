@@ -20,3 +20,55 @@
     height: 20px;
     color: var(--mGray1);
 }
+
+@media (max-width: 1024px) {
+    .root {
+        height: 100%;
+        max-width: 20rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .mask {
+        width: 100vw;
+        height: 100%;
+        position: fixed;
+        background: rgba(256, 256, 256, 0.5);
+        z-index: 1;
+    }
+
+    .toggleBtn {
+        --size: 40px;
+        border: none;
+        cursor: pointer;
+        top: 18px;
+        left: 15px;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s;
+        margin-left: auto;
+    }
+
+    .toggleBtn.active {
+        left: 40%;
+    }
+}
+
+@media (max-width: 500px) {
+    .toggleBtn {
+        --size: 30px;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    .toggleBtn svg {
+        width: 15px;
+    }
+}

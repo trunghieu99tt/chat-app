@@ -1,4 +1,7 @@
 import React, { useRef, useEffect } from "react";
+import SimpleReactLightbox from "simple-react-lightbox";
+import { useTranslation } from "react-i18next";
+
 // talons
 import { useChat } from "./useChat";
 
@@ -9,13 +12,13 @@ import ChatLayout from "../../layout/ChatLayout";
 import MessageGroup from "../../components/MessageGroup";
 import TextMessageForm from "../../components/TextMessageForm";
 import ImageMessageForm from "../../components/ImageMessageForm";
+import RoomImageGallery from "../../components/RoomImageGallery";
 
 // images
 import defaultRoomImage from "../../static/images/default_room.png";
 
 // classes
 import classes from "./chat.module.css";
-import { useLang } from "../../talons/Lang/useLang";
 
 const Chat = () => {
     const {
@@ -23,6 +26,7 @@ const Chat = () => {
         messages,
         chosenEmoji,
         messageImage,
+        channelImages,
         currentChannel,
         onSubmit,
         onChange,
@@ -30,9 +34,9 @@ const Chat = () => {
         onCloseImageMessageForm,
     } = useChat();
 
-    const messageDiv = useRef<HTMLElement | null>(null);
+    const { t } = useTranslation();
 
-    const { changeLang } = useLang();
+    const messageDiv = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         if (messageDiv && messageDiv.current) {
@@ -88,8 +92,11 @@ const Chat = () => {
                         value={message}
                     />
                 </div>
+
+                <SimpleReactLightbox>
+                    <RoomImageGallery images={channelImages} />
+                </SimpleReactLightbox>
             </main>
-            <aside className={classes.aside}></aside>
         </section>
     );
 };

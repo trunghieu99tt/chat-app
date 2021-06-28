@@ -41,3 +41,16 @@
     border-radius: 8px;
     margin-top: 1.25rem;
 }
+
+@media (max-width: 1023px) {
+    .root {
+        min-width: 30rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .root {
+        min-width: auto;
+        width: 100vw;
+    }
+}

@@ -40,6 +40,7 @@ const ChannelDetail = () => {
 
         closeEdit,
         openEdit,
+        hideDropdown,
         toggleDropdown,
         toggleVisibleMember,
     } = useChannelDetail();
@@ -48,7 +49,7 @@ const ChannelDetail = () => {
 
     const dropdownRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-    useOnClickOutside(dropdownRef, () => toggleDropdown());
+    useOnClickOutside(dropdownRef, () => hideDropdown());
 
     return (
         <React.Fragment>

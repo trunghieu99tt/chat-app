@@ -29,6 +29,15 @@ const useChat = () => {
 
     const currentChannel = channels?.find((e: iChannel) => e._id === id);
 
+    let channelImages: string[] = [];
+
+    currentChannel?.messages.forEach((message: iMessage) => {
+        const isImage = message.file && message.file.endsWith('jpg');
+        if (isImage && message.file) {
+            channelImages.push(message.file);
+        }
+    })
+
     useEffect(() => {
         return () => {
             joinChannel();
@@ -131,6 +140,7 @@ const useChat = () => {
         messages,
         chosenEmoji,
         messageImage,
+        channelImages,
         currentChannel,
 
         onSubmit,

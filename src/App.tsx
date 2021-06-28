@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 
 // talons
 import { useSocket } from "./talons/Socket/useSocket";
+import { useWindowSize } from "./utils/useWindowSize";
 
 // libs
 import { toast } from "react-toastify";
@@ -23,6 +24,7 @@ import PrivateRouteController from "./routes/PrivateRouteController";
 
 // states
 import { userState } from "./states/user.state";
+import { screenSizeState } from "./states/app.state";
 
 // styles
 import "./App.css";
@@ -31,8 +33,11 @@ const App = () => {
     const [user, setUser] = useRecoilState(userState);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const [screenSize, setScreenSize] = useRecoilState(screenSizeState);
+
     // must have
     const socketTalons = useSocket();
+    const windowSize = useWindowSize();
 
     // router
     const history = useHistory();
@@ -51,6 +56,29 @@ const App = () => {
             }
         }
     }, []);
+
+    useEffect(() => {
+        if (windowSize && windowSize.width) {
+            const { width } = windowSize;
+            if (width > 1024) {
+                if (screenSize !== "DESKTOP") {
+                    setScreenSize("DESKTOP");
+                }
+            } else if (width <= 1024 && width > 768) {
+                if (screenSize !== "LARGE_TABLET") {
+                    setScreenSize("LARGE_TABLET");
+                }
+            } else if (width <= 768 && width > 500) {
+                if (screenSize !== "TABLET") {
+                    setScreenSize("TABLET");
+                }
+            } else {
+                if (screenSize !== "MOBILE") {
+                    setScreenSize("MOBILE");
+                }
+            }
+        }
+    }, [windowSize]);
 
     const getUser = async () => {
         if (!user) {

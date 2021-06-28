@@ -36,14 +36,22 @@
 
 .main {
     padding-bottom: 2.5rem;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     height: calc(100vh - 3.75rem);
+    display: flex;
 }
 
 .content {
     position: relative;
     height: 100%;
+    width: 80%;
+    padding: 1.5rem;
+}
+
+.aside {
+    flex: 1;
+    border-left: 1px solid var(--mGray1);
 }
 
 .messageContainer {
@@ -64,4 +72,16 @@
 /* Handle */
 .messageContainer::-webkit-scrollbar-thumb {
     background: #fff;
+}
+
+@media (max-width: 1024px) {
+    .headerInner {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .content {
+        width: 100%;
+    }
 }

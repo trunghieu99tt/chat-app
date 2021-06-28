@@ -16,9 +16,7 @@ ReactDOM.render(
         <Suspense fallback={<div>Loading...</div>}>
             <RecoilRoot>
                 <BrowserRouter>
-                    <SimpleReactLightbox>
-                        <App />
-                    </SimpleReactLightbox>
+                    <App />
                     <ToastContainer
                         position="top-center"
                         autoClose={5000}

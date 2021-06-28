@@ -35,43 +35,47 @@ const ChannelList = (props: Props) => {
     const { t } = useTranslation();
 
     return (
-        <section>
+        <React.Fragment>
             <AnimatePresence>
                 {visibleForm && <ChannelForm closeForm={closeForm} />}
             </AnimatePresence>
-            <header className="flex justify-between">
-                <p className="text-white text-lg font-bold">{t("roomList")}</p>
-                <button
-                    className="bg-mGray5 rounded-lg p-2 text-white outline-none"
-                    onClick={openForm}
-                >
-                    <BsPlus />
-                </button>
-            </header>
-            <div className="flex bg-mGray6 mt-9 mb-9 px-3 py-3 rounded-lg text-white items-center focus:outline-none">
-                <BsSearch />
-                <input
-                    type="text"
-                    placeholder={t("search")}
-                    className="input flex-1"
-                    value={query}
-                    onChange={onChangeSearchInput}
-                />
-            </div>
-            <motion.div className={classes.channelList}>
-                {channelList?.map((channel: iChannel, idx: number) => {
-                    return (
-                        <ChannelListItem
-                            data={channel}
-                            isSelected={selected === idx}
-                            onHover={() => setSelected(idx)}
-                            onLeave={() => setSelected(-1)}
-                            key={`channelListItem-${channel._id}`}
-                        />
-                    );
-                })}
-            </motion.div>
-        </section>
+            <section>
+                <header className="flex justify-between">
+                    <p className="text-white text-lg font-bold">
+                        {t("roomList")}
+                    </p>
+                    <button
+                        className="bg-mGray5 rounded-lg p-2 text-white outline-none"
+                        onClick={openForm}
+                    >
+                        <BsPlus />
+                    </button>
+                </header>
+                <div className="flex bg-mGray6 mt-9 mb-9 px-3 py-3 rounded-lg text-white items-center focus:outline-none">
+                    <BsSearch />
+                    <input
+                        type="text"
+                        placeholder={t("search")}
+                        className="input flex-1"
+                        value={query}
+                        onChange={onChangeSearchInput}
+                    />
+                </div>
+                <motion.div className={classes.channelList}>
+                    {channelList?.map((channel: iChannel, idx: number) => {
+                        return (
+                            <ChannelListItem
+                                data={channel}
+                                isSelected={selected === idx}
+                                onHover={() => setSelected(idx)}
+                                onLeave={() => setSelected(-1)}
+                                key={`channelListItem-${channel._id}`}
+                            />
+                        );
+                    })}
+                </motion.div>
+            </section>
+        </React.Fragment>
     );
 };
 
