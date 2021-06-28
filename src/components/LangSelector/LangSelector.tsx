@@ -81,7 +81,10 @@ const LangSelector = ({ classes: propsClasses }: Props) => {
                             langList.length > 0 &&
                             langList.map((langObj: LangObj, idx: number) => {
                                 return (
-                                    <li className={classes.listItem}>
+                                    <li
+                                        className={classes.listItem}
+                                        key={`lang-selection-${idx}`}
+                                    >
                                         <button
                                             onClick={() =>
                                                 changeLang(langObj.lang)

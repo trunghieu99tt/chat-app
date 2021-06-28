@@ -1,11 +1,10 @@
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // talons
 import { useChannelList } from "./useChannelList";
 
 // components
-import ChannelForm from "../../ChannelForm";
 import ChannelListItem from "../../ChannelListItem";
 
 // icons
@@ -24,10 +23,8 @@ const ChannelList = (props: Props) => {
     const {
         query,
         selected,
-        visibleForm,
         channelList,
         openForm,
-        closeForm,
         setSelected,
         onChangeSearchInput,
     } = useChannelList();
@@ -36,9 +33,6 @@ const ChannelList = (props: Props) => {
 
     return (
         <React.Fragment>
-            <AnimatePresence>
-                {visibleForm && <ChannelForm closeForm={closeForm} />}
-            </AnimatePresence>
             <section>
                 <header className="flex justify-between">
                     <p className="text-white text-lg font-bold">

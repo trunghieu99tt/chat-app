@@ -1,6 +1,5 @@
 .root {
     background: #181818;
-    position: relative;
 }
 
 .footer {
@@ -54,6 +53,7 @@
         justify-content: center;
         transition: all 0.5s;
         margin-left: auto;
+        margin-bottom: 1rem;
     }
 
     .toggleBtn.active {

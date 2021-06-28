@@ -9,9 +9,6 @@ import { useTranslation } from "react-i18next";
 import { useChannelDetail } from "./useChannelDetail";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
-// components
-import ChannelForm from "../../ChannelForm";
-
 // icons
 import { AiOutlineLeft, AiOutlineEdit } from "react-icons/ai";
 import { FiX, FiChevronDown, FiChevronRight } from "react-icons/fi";
@@ -31,14 +28,12 @@ import Tag from "../../Tag";
 const ChannelDetail = () => {
     const {
         visibleDropdown,
-        visibleEdit,
         onlineMembers,
         offlineMembers,
         currentChannel,
         visibleMembers,
         isCurrentUserOwner,
 
-        closeEdit,
         openEdit,
         hideDropdown,
         toggleDropdown,
@@ -53,14 +48,6 @@ const ChannelDetail = () => {
 
     return (
         <React.Fragment>
-            <AnimatePresence>
-                {visibleEdit && (
-                    <ChannelForm
-                        closeForm={closeEdit}
-                        channel={currentChannel}
-                    />
-                )}
-            </AnimatePresence>
             <section className={classes.root}>
                 <header className={classes.header}>
                     <Link

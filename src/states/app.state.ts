@@ -20,3 +20,8 @@ export const showRightSidebarState = atom<boolean>({
     key: 'showRightSidebarState',
     default: false
 })
+
+export const showChannelFormState = atom<boolean>({
+    key: 'showChannelFormState',
+    default: false
+})

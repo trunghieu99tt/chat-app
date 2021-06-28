@@ -25,7 +25,7 @@ const RoomImageGallery = ({ classes: propsClasses, images }: Props) => {
                 <div className={classes.content}>
                     {images.map((image: string) => {
                         return (
-                            <figure className={classes.itemWrapper}>
+                            <figure className={classes.itemWrapper} key={image}>
                                 <img
                                     src={image}
                                     alt={image}

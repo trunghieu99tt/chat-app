@@ -1,6 +1,7 @@
 .root {
     flex: 1;
     padding: 1rem;
+    border-left: 1px solid #777;
 }
 
 .heading {

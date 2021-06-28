@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useRecoilState, useRecoilValue } from "recoil";
 import client from "../../api/client";
+import { showChannelFormState } from "../../states/app.state";
+import { channelState } from "../../states/room.state";
 import { useSocket } from "../../talons/Socket/useSocket";
 import { iChannel } from "../../types/channel.types";
 
-type Props = {
-    closeForm: () => void;
-    channel?: iChannel;
-}
 
-const useChannelForm = ({ closeForm, channel }: Props) => {
+const useChannelForm = () => {
+
+    const [isVisibleChannelForm, setShowChannelForm] = useRecoilState(showChannelFormState);
+    const params: any = useParams();
+    const { id } = params;
+
+    const channels = useRecoilValue(channelState);
+    const channel = channels?.find((e: iChannel) => e._id === id);
+
     const { createChannel, updateChannel } = useSocket();
     const [channelImage, setChannelImage] = useState<{
         file: File | null,
@@ -22,6 +30,8 @@ const useChannelForm = ({ closeForm, channel }: Props) => {
         name: channel?.name || '',
         description: channel?.description || '',
     })
+
+
 
     const onSubmit = async (event: any) => {
         event.preventDefault();
@@ -47,7 +57,7 @@ const useChannelForm = ({ closeForm, channel }: Props) => {
             })
         }
 
-        closeForm();
+        setShowChannelForm(false);
     }
 
     const onChange = (event: any, file = false) => {
@@ -66,11 +76,17 @@ const useChannelForm = ({ closeForm, channel }: Props) => {
         }
     }
 
+    const closeForm = () => setShowChannelForm(false);
+
+
+
     return {
         values,
         channelImage,
+        visible: isVisibleChannelForm,
         onSubmit,
-        onChange
+        onChange,
+        closeForm
     }
 
 }

@@ -7,7 +7,7 @@ import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
-import SimpleReactLightbox from "simple-react-lightbox";
+import DebugObserver from "./recoilDebug";
 
 import "./i18.config";
 
@@ -16,6 +16,7 @@ ReactDOM.render(
         <Suspense fallback={<div>Loading...</div>}>
             <RecoilRoot>
                 <BrowserRouter>
+                    <DebugObserver />
                     <App />
                     <ToastContainer
                         position="top-center"

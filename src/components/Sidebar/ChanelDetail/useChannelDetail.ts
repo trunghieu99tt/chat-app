@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { channelState } from "../../../states/room.state";
+import { showChannelFormState } from "../../../states/app.state";
 import { connectedUsersState, userState } from "../../../states/user.state";
 import { iChannel } from "../../../types/channel.types";
 import { iUser } from "../../../types/user.types";
@@ -18,10 +19,12 @@ const useChannelDetail = () => {
     const channels = useRecoilValue(channelState);
     const currentUser = useRecoilValue(userState);
     const connectedUsers = useRecoilValue(connectedUsersState);
+    const setShowChannelForm = useSetRecoilState(showChannelFormState);
     const currentChannel = channels?.find((e: iChannel) => e._id === id);
 
+
     const isCurrentUserOwner =
-        currentChannel?.owner.username === currentUser?.username || false;
+        currentChannel?.owner?.username === currentUser?.username || false;
 
     const onlineUsers = connectedUsers?.reduce(
         (res: any, user: iUser) => {
@@ -52,7 +55,7 @@ const useChannelDetail = () => {
     });
 
     const closeEdit = () => setVisibleEdit(false);
-    const openEdit = () => setVisibleEdit(true);
+    const openEdit = () => setShowChannelForm(true);
     const toggleDropdown = () => {
         setVisibleDropdown(value => !value)
     };

@@ -34,8 +34,6 @@ const Chat = () => {
         onCloseImageMessageForm,
     } = useChat();
 
-    const { t } = useTranslation();
-
     const messageDiv = useRef<HTMLElement | null>(null);
 
     useEffect(() => {

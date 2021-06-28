@@ -1,12 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 
 // layout
 import ChatLayout from "../../layout/ChatLayout/Chat.layout";
-
-// components
-import LangSelector from "../../components/LangSelector";
 
 // images
 import BackgroundImage from "../../static/images/bg.jpg";
@@ -19,7 +15,6 @@ const Welcome = () => {
 
     return (
         <section className={classes.root}>
-            <LangSelector />
             <h2 className={classes.heading}>{t("welcome")}</h2>
             <p className={classes.sub}>{t("subWelcome")}</p>
             <img
