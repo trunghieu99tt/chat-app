@@ -6,6 +6,11 @@
     "search": "Tìm kiếm",
     "at": "lúc",
     "sharedImage": "Ảnh đã chia sẻ",
+    "forgotPassword": {
+      "heading": "Quên mật khẩu?",
+      "subHeading": "Nhập địa chỉ email của tài khoản, chúng tôi sẽ gửi lại một mật khẩu mới cho bạn!",
+      "success": "Thay đổi mật khẩu thành công. Hãy kiểm tra hòm thư để cập nhật mật khẩu mới nhé!"
+    },
     "tag": {
       "owner": "Chủ phòng"  
     },
@@ -18,7 +23,10 @@
         "deleteRoom": "Xóa thông tin phòng",
         "leaveRoom": "Rời khỏi phòng",
         "back": "Quay lại",
-        "save": "Lưu"
+        "save": "Lưu",
+        "send": "Gửi",
+        "cancel": "Hủy",
+        "upload":"Upload"
     },
     "placeholder": {
       "message": "Nhập tin nhắn..."  
@@ -41,5 +49,15 @@
         "username": "username",
         "firstName": "Tên",
         "lastName": "Họ"
+    },
+    "channel": {
+      "new": "Phòng mới",
+      "name": "Tên phòng",
+      "description": "Mô tả",
+      "image": "Ảnh của phòng"
+    },
+    "error": {
+      "invalidEmail": "Email không hợp lệ",
+      "unknownError": "Có lỗi xảy ra. Xin hãy thử lại sau"
     }
 }

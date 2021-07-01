@@ -31,6 +31,7 @@ const useEditMyAccount = () => {
         file: null,
         url: user?.photo || ""
     })
+    const [loading, setLoading] = useState<boolean>(false);
     const history = useHistory();
 
     const onSubmit = async (data: any) => {
@@ -66,6 +67,7 @@ const useEditMyAccount = () => {
             formData.append(key, value as any);
         })
         try {
+            setLoading(true);
             const response = await client.patch('/user/update', formData);
             if (response?.data?.statusCode === 200) {
                 setUser(response.data.data);
@@ -77,6 +79,7 @@ const useEditMyAccount = () => {
         } catch (error) {
             toast.error(error.response.data.message);
         }
+        setLoading(false);
     }
 
     const goBack = () => history.goBack();
@@ -91,6 +94,7 @@ const useEditMyAccount = () => {
     }
 
     return {
+        loading,
         register,
         userPhoto,
         goBack,

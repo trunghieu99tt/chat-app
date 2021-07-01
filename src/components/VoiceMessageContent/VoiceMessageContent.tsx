@@ -57,19 +57,9 @@ const VoiceMessageContent = ({ classes: propsClasses, url }: Props) => {
             ></ReactPlayer>
 
             <div className={classes.wrapper}>
-                {/* <div
-                    className={classes.progress}
-                    style={{
-                        width: `${(played / duration) * 100}%`,
-                    }}
-                ></div> */}
                 <button className={classes.controlBtn} onClick={togglePlay}>
                     {playing ? <AiFillPauseCircle /> : <AiFillPlayCircle />}
                 </button>
-
-                {/* <span className={classes.duration}>
-                        {duration?.toFixed(2) || "0.00"}s
-                    </span> */}
             </div>
         </div>
     );

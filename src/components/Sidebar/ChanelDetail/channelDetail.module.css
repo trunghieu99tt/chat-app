@@ -1,6 +1,7 @@
 .detail {
     position: relative;
     margin-bottom: 1.5rem;
+    min-height: 5rem;
 }
 
 .info {

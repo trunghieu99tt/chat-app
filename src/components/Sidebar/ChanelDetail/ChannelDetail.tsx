@@ -9,6 +9,9 @@ import { useTranslation } from "react-i18next";
 import { useChannelDetail } from "./useChannelDetail";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
+// components
+import Tag from "../../Tag";
+
 // icons
 import { AiOutlineLeft, AiOutlineEdit } from "react-icons/ai";
 import { FiX, FiChevronDown, FiChevronRight } from "react-icons/fi";
@@ -23,7 +26,6 @@ import { iUser } from "../../../types/user.types";
 
 // styles
 import classes from "./channelDetail.module.css";
-import Tag from "../../Tag";
 
 const ChannelDetail = () => {
     const {

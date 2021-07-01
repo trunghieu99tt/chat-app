@@ -3,6 +3,7 @@ import { useRecoilValue } from "recoil";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import classNames from "classnames";
 
 // talons
 import { useAuth } from "../../talons/Auth/useAuth";
@@ -18,6 +19,9 @@ import DefaultAvatar from "../../static/images/default.png";
 
 // states
 import { fullNameSelector, userState } from "../../states/user.state";
+
+// styles
+import classes from "./myAccountController.module.css";
 
 const MyAccountController = () => {
     const { t } = useTranslation();
@@ -71,7 +75,10 @@ const MyAccountController = () => {
                             opacity: 0,
                             scale: 0,
                         }}
-                        className="absolute mt-2 w-full border border-mGray1 rounded-xl px-3 py-4 shadow bg-white"
+                        className={classNames(
+                            "absolute mt-2 w-full border border-mGray1 rounded-xl px-3 py-4 shadow bg-white",
+                            classes.children
+                        )}
                     >
                         <ul>
                             <li className="dropdownItem">
@@ -86,7 +93,7 @@ const MyAccountController = () => {
                                     <p>{t("account.groupChat")}</p>
                                 </Link>
                             </li>
-                            <li className="dropdownItem" onClick={handleLogout}>
+                            <li className="dropdownItem">
                                 <button onClick={handleLogout}>
                                     <RiLogoutBoxRLine></RiLogoutBoxRLine>
                                     <p>{t("button.logout")}</p>

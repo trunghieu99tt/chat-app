@@ -19,6 +19,7 @@ const useChat = () => {
     const [messages, setMessages] = useState<{ [key: string]: iMessage[] } | null>(null);
     const [message, setMessage] = useState<string>('');
     const [chosenEmoji, setChosenEmoji] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(false);
     const [messageImage, setMessageImage] = useState<{
         file: File | null,
         url: string,
@@ -78,6 +79,7 @@ const useChat = () => {
         else {
             const formData = new FormData();
             formData.append('image', messageImage.file);
+            setLoading(true);
             const response = await client.post('upload/image', formData);
             let imageUrl = null;
             if (response.status === 201) {
@@ -85,7 +87,9 @@ const useChat = () => {
             }
             addMessage(message, id, imageUrl);
             onCloseImageMessageForm();
+            setMessage('');
         }
+        setLoading(false);
     }
 
     const onChange = (event: any, file = false) => {
@@ -138,6 +142,7 @@ const useChat = () => {
     return {
         message,
         messages,
+        loading,
         chosenEmoji,
         messageImage,
         channelImages,

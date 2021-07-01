@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 // talons
 import { useAuth } from "../../talons/Auth/useAuth";
@@ -8,6 +9,7 @@ import { useAuth } from "../../talons/Auth/useAuth";
 import mergeClasses from "../../utils/mergeClasses";
 import Input from "../Input";
 import Logo from "../Logo";
+import EmailForm from "../ForgotPassword";
 
 // components
 import SocialLoginIcons from "../SocialLoginIcons/SocialLoginIcons";
@@ -19,7 +21,6 @@ import { MdLock } from "react-icons/md";
 
 // styles
 import defaultClasses from "./authform.module.css";
-import EmailForm from "../EmailForm";
 
 interface Props {
     classes?: object;
@@ -33,7 +34,6 @@ const AuthForm = ({ classes: propsClasses, isRegister = false }: Props) => {
         visibleEmailForm,
         handleSubmit,
         register,
-        handleForgotPassword,
         onCloseEmailForm,
         onOpenEmailForm,
     } = useAuth({
@@ -42,12 +42,10 @@ const AuthForm = ({ classes: propsClasses, isRegister = false }: Props) => {
 
     return (
         <React.Fragment>
-            {visibleEmailForm && (
-                <EmailForm
-                    onSubmit={handleForgotPassword}
-                    onClose={onCloseEmailForm}
-                />
-            )}
+            <AnimatePresence>
+                {visibleEmailForm && <EmailForm onClose={onCloseEmailForm} />}
+            </AnimatePresence>
+
             <section className={classes.root}>
                 <div className="max-w-lg rounded-mXl p-12 border-none md:border md:border-solid md:border-mGray1 bg-white">
                     <Logo />

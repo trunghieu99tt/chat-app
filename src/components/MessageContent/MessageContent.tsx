@@ -1,19 +1,21 @@
 import React from "react";
 import { SRLWrapper } from "simple-react-lightbox";
+import { useTranslation } from "react-i18next";
 
 // utils
 import { urlify } from "../../utils/helper";
 
-// types
-import { iMessage } from "../../types/message.types";
+// components
+import VoiceMessageContent from "../VoiceMessageContent";
 
 // images
 import defaultAvatar from "../../static/images/default.png";
 
 // styles
 import classes from "./messageContent.module.css";
-import VoiceMessageContent from "../VoiceMessageContent";
-import { useTranslation } from "react-i18next";
+
+// types
+import { iMessage } from "../../types/message.types";
 
 interface Props {
     data: iMessage;

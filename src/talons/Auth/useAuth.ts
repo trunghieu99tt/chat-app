@@ -82,13 +82,6 @@ const useAuth = ({ isRegister = false }: Props) => {
         }
     }
 
-    const handleForgotPassword = async () => {
-        try {
-
-        } catch (error) {
-            toast.error(error.response.data.message);
-        }
-    }
 
     const onCloseEmailForm = () => setVisibleEmailForm(false);
 
@@ -100,7 +93,7 @@ const useAuth = ({ isRegister = false }: Props) => {
         handleLogout,
         onCloseEmailForm,
         handleSubmit: handleSubmit(onSubmit),
-        handleForgotPassword, onOpenEmailForm
+        onOpenEmailForm
     }
 }
 

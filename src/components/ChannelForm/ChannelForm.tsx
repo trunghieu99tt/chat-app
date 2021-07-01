@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // components
 import Mask from "../Mask";
@@ -9,7 +9,7 @@ import classes from "./channelForm.module.css";
 
 // talons
 import { useChannelForm } from "./useChannelForm";
-
+import { useTranslation } from "react-i18next";
 const initState = {
     scale: 0,
     top: "50%",
@@ -22,6 +22,8 @@ const initState = {
 const ChannelForm = () => {
     const { values, onSubmit, onChange, channelImage, closeForm, visible } =
         useChannelForm();
+
+    const { t } = useTranslation();
 
     return (
         <div>
@@ -41,14 +43,14 @@ const ChannelForm = () => {
                             values: 0.1,
                         }}
                     >
-                        <h3 className={classes.title}>New Channel</h3>
+                        <h3 className={classes.title}>{t("channel.new")}</h3>
                         <form onSubmit={onSubmit}>
                             <div className="mb-6">
                                 <input
                                     value={values.name}
                                     type="text"
                                     name="name"
-                                    placeholder="Channel name"
+                                    placeholder={t("channel.name")}
                                     className={classes.input}
                                     onChange={onChange}
                                     required
@@ -59,7 +61,7 @@ const ChannelForm = () => {
                                     value={values.description}
                                     rows={5}
                                     name="description"
-                                    placeholder="Channel description"
+                                    placeholder={t("channel.description")}
                                     className={classes.input}
                                     onChange={onChange}
                                     required
@@ -78,7 +80,7 @@ const ChannelForm = () => {
                                     htmlFor="image"
                                     className={classes.fileBtn}
                                 >
-                                    Channel Image
+                                    {t("channel.image")}
                                 </label>
                                 {channelImage.url && (
                                     <figure className="mt-3">
@@ -92,7 +94,7 @@ const ChannelForm = () => {
                             </div>
 
                             <button type="submit" className={classes.submitBtn}>
-                                Save
+                                {t("button.save")}
                             </button>
                         </form>
                     </motion.div>

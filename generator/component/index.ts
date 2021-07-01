@@ -31,7 +31,7 @@ module.exports = {
             {
                 type: "add",
                 path:
-                    "../src/components/{{properCase name}}/{{lowerCase name}}.module.css",
+                    "../src/components/{{properCase name}}/{{camelCase name}}.module.css",
                 abortOnFail: true,
             },
             {

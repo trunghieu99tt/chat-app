@@ -35,8 +35,9 @@
     object-fit: cover;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1024px) {
     .root {
+        top: 0;
         right: 0;
     }
 }

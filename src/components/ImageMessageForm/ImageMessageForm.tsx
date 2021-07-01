@@ -9,6 +9,7 @@ import defaultClasses from "./imagemessageform.module.css";
 
 // types
 import { iFile } from "../../types/message.types";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     classes?: object;
@@ -35,6 +36,8 @@ const ImageMessageForm = ({
     data,
 }: Props) => {
     const classes = mergeClasses(defaultClasses, propsClasses);
+
+    const { t } = useTranslation();
 
     return (
         <AnimatePresence>
@@ -75,9 +78,9 @@ const ImageMessageForm = ({
                     </div>
 
                     <div className={classes.btnGroup}>
-                        <button onClick={onCancel}>Cancel</button>
+                        <button onClick={onCancel}>{t("button.cancel")}</button>
                         <button type="submit" className={classes.btnSubmit}>
-                            Upload
+                            {t("button.upload")}
                         </button>
                     </div>
                 </form>

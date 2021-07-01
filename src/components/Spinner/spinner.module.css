@@ -1,0 +1,48 @@
+.root {
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.spinner {
+    --size: 3rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: 8px solid #0000;
+    border-right-color: #fff;
+    position: relative;
+    animation: s4 1s infinite linear;
+}
+.spinner:before,
+.spinner:after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+}
+.spinner:after {
+    animation-duration: 4s;
+}
+
+@keyframes s4 {
+    100% {
+        transform: rotate(1turn);
+    }
+}

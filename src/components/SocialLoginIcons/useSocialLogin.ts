@@ -51,8 +51,9 @@ const useSocialLogin = () => {
         setLoading(false);
     };
 
-    const responseGoogleFail = () => {
-        toast.error("Something went wrong");
+    const responseGoogleFail = (error: any) => {
+        console.log(`error`, error)
+        // toast.error("Something went wrong");
     }
 
     const responseGithub = async (code: string) => {

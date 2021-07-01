@@ -6,6 +6,11 @@
     "search": "Search",
     "at": "at",
     "sharedImage": "Shared Image",
+    "forgotPassword": {
+      "heading": "Forgot your password?",
+      "subHeading": "Enter your user account's verified email address and we will send you a new password.",
+      "success": "Updated password. Please check your email for new password!"
+    },
     "tag": {
       "owner": "Owner"  
     },
@@ -18,7 +23,10 @@
         "deleteRoom": "Delete room",
         "leaveRoom": "Leave room",
         "back": "Back",
-        "save": "Save"
+        "save": "Save",
+        "send": "Send",
+        "cancel": "Cancel",
+        "upload":"Upload"
     },
     "placeholder": {
       "message": "Type a message here..."  
@@ -41,5 +49,15 @@
         "username": "username",
         "firstName": "First Name",
         "lastName": "Last name"
+    },
+    "channel": {
+      "new": "New channel",
+      "name": "Channel Name",
+      "description": "Channel Description",
+      "image": "Channel Image"
+    },
+    "error": {
+      "invalidEmail": "Invalid Email",
+      "unknownError": "Something went wrong. Please try again later"
     }
 }
