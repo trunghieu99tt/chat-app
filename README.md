@@ -1,3 +1,8 @@
+### Test Account
+
+username: admin
+password: admin
+
 ## Available Scripts
 
 In the project directory, you can run:
